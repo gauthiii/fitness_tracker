@@ -1,0 +1,184 @@
+/* Dashboard.css */
+ .db {
+  background-color: brown;
+  min-height: 100vh;
+  
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 30vw;
+  border: 2px solid black;
+  width: 600px;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: black; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+   
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.dashboard {
+  font-family: Arial, sans-serif;
+  
+ 
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: #000;
+  color: brown;
+  text-align: center;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+   
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 20px;
+  display: flex; /* Display items horizontally */
+  flex-direction: row; /* Set direction to row */
+}
+
+.navbar li { 
+  margin-right: 20px;
+}
+
+.login-image {
+  height: 18vw;
+ /* margin-left: 40vw;*/
+ float: left;
+ 
+
+   
+}
+
+.workout-text {
+  text-align: center;
+  font-size: 7vh;
+  font-weight: bold;
+  color: black;
+  margin-top: 20px; /* Adjust the margin as needed */
+  font-family: 'Noto Serif', sans-serif; /* Specify the desired font family */
+ 
+}
+
+.workout-text p {
+  cursor: pointer;
+}
+
+.stat1{
+  text-align: center;
+  font-size: 4vh;
+  font-weight: bold;
+  font-family: 'Noto Serif', sans-serif; 
+  margin: 0;
+  padding: 0;
+}
+
+.stat-text {
+  display: flex;
+  justify-content: space-between; /* To distribute items evenly */
+  font-size: 7vh;
+  font-weight: bold;
+  color: black;
+  font-family: 'DM Serif Display', serif;
+}
+
+.stat-item {
+  flex: 1; /* Equal width for each stat item */
+  text-align: center;
+}
+
+
+.bmi-table {
+  width: 50%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border: 2px solid black;
+}
+
+.bmi-table th, .bmi-table td {
+  border: 2px solid black;
+  padding: 10px;
+  text-align: center;
+}
+
+.bmi-table th {
+  background-color: #cf3737;
+  color: black;
+}
+
+.bmi-table tbody tr:nth-child(even) {
+  background-color: #cf3737;
+}
+
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+   
+  font-size: 1.2rem;
+}
+
+.navbar a:hover {
+  font-weight: bold;
+  text-decoration: none;
+   
+  font-size: 1.5rem;
+}
+
+.dashboard-search-container {
+  width: 80%;
+ 
+  
+  
+  font-size: 1rem;
+  padding-right: 50px;
+  
+}
+
+.dashboard-search-bar {
+  width: 80%;
+  border-radius: 100px;
+  font-weight: bold;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+
+.main-content {
+  background-color: brown;
+  padding: 20px;
+  
+  border-radius: 5px;
+  margin: 20px;
+  margin-left: 50px;
+ /* box-shadow: 2px 4px rgba(0, 0, 0, 0.1);*/
+}

@@ -1,0 +1,110 @@
+/* Profile.css */
+
+.pb{
+
+    background-color: brown;
+    min-height: 100vh;
+    min-width: 100vw;
+ 
+}
+
+.cen {
+
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  transform: translate(-50%, -50%);
+ 
+  position: fixed;
+}
+
+.profile {
+    max-width: 500px;
+    margin: 0px;
+    padding: 20px;
+ /*   translate: 0px 20px; */
+    border-radius: 5px;
+    background-color: #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    color: brown;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Noto Serif', sans-serif; 
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  /* Style for the home icon */
+.home-icon {
+  margin-right: 10px; /* Adjust the margin as needed to control the space between the icon and text */
+  color: brown; /* Set the color for the home icon */
+}
+  
+  .disabled-input {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    border-radius: 3px;
+    background-color: #b0aaaa;
+  }
+
+  .p_in {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    border-radius: 3px;
+  }
+
+  
+  
+  select {
+    width: 101%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-top: 5px;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .proB,
+  .goBackButton {
+    width: 48%;
+    padding: 10px;
+    background-color: brown;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 0px;
+  }
+  
+  .proB:hover {
+    background-color: orange;
+  }
+
+  .goBackButton:hover {
+    background-color: orange;
+  }
+  
