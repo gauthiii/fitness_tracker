@@ -41,7 +41,7 @@ function Login() {
         // User is logged in
         setUser(user);
         // Redirect to the home page or any other authenticated route
-        console.log("User: ",userProfile);
+        
 
         
         navigate('/home');
@@ -68,8 +68,7 @@ function Login() {
     // Log the username and password to the console
     setLoading(true);
 
-    console.log('Username:', username);
-    console.log('Password:', password);
+  
 
    
 
@@ -168,7 +167,7 @@ function Login() {
       if (docSnapshot.exists()) {
         // The document already exists; you can access its data
         const userData = docSnapshot.data();
-        console.log('Document data:', userData);
+        
       } else { 
         // The document does not exist; create it
         await setDoc(userDocRef, {
@@ -180,7 +179,7 @@ function Login() {
           weight:''
           // Add more data as needed
         });
-        console.log('Document created.');
+        
       }
     } catch (error) {
       console.error('Error getting or creating document: ', error);

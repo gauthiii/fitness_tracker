@@ -254,7 +254,7 @@ function Profile() {
         </div>
         <div className="form-group buttons-container">
         <button type="submit" className='proB'>Save Changes</button>
-        <button onClick={handleGoBack} className='proB goBackButton'>Cancel Changes</button>
+        <button onClick={handleGoBack} className='proB goBackButton'>Home Screen</button>
         </div>
         </form>
     </div>

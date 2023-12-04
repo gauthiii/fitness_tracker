@@ -54,7 +54,7 @@ function Dashboard() {
      
         // Redirect to the home page or any other authenticated route
        
-        console.log("User Email: ",user.email);
+       
 
         await getOrCreateDocument(user.email);
 
@@ -74,8 +74,7 @@ function Dashboard() {
   const getOrCreateDocument = async (email) => {
     const db = getFirestore(firebase);
 
-    console.log(email);
-  
+ 
     // Reference to the document you want to retrieve or create
     const userDocRef = doc(db, 'ft_users', email);
   
@@ -87,8 +86,7 @@ function Dashboard() {
         // The document already exists; you can access its data
         const userData = docSnapshot.data();
         
-        console.log('Home Page Document data:', userData);
-        console.log('Home Page Document email:', userData['email']);
+      
 
        setUser(userData);
 
@@ -125,8 +123,6 @@ function Dashboard() {
         
         let bmi_val = (wt/ht/ht)*10000;
 
-        console.log('WEIGHT',wt);
-        console.log('HEIGHT',ht);
 
         calcBmi(`${bmi_val.toFixed(2)}`);
 
