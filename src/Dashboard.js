@@ -1,12 +1,11 @@
 // Dashboard.js
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import firebase from './firebase';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
- 
+import Nav from './Nav.js';
 
 import './Dashboard.css';
 import './LoadingSpinner.css';
@@ -260,7 +259,7 @@ function Dashboard() {
       ) :(
     <div className="dashboard">
       {/* Navbar */}
-      <div className="navbar">
+    { /*  <div className="navbar">
         <ul>
           <li><Link to="/home">Home</Link></li>
           <li><Link to="/profile">Profile</Link></li>
@@ -277,7 +276,8 @@ function Dashboard() {
           
           <li onClick={handleLogout} ><Link to="/">Logout</Link></li>
         </ul>
-      </div>
+      </div> */ }
+      <Nav handleLogout={handleLogout} />
         
 
         <div className="workout-text">

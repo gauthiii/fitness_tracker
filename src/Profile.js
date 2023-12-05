@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
 
+import Nav from './Nav.js';
+
 
 import firebase from './firebase'; 
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
@@ -39,6 +41,22 @@ function Profile() {
   const [loading, setLoading] = useState(true);  
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [errorMessage, setError] = useState('');
+
+  const handleLogout = async () => {
+    try {
+      // Initialize Firebase Authentication
+      const auth = getAuth();
+
+      // Sign out the user
+      await signOut(auth);
+
+      // Redirect to the login page or any other desired route after logout
+      // Example: Redirect to the login page
+     window.location.href = '/'; // You can use the React Router's navigation instead if needed
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   const checkUserAuthState = () => {
     const auth = getAuth(firebase);
@@ -175,6 +193,7 @@ function Profile() {
 
   return (
     <div className="pb">
+      <Nav handleLogout={handleLogout} />
         {loading ? ( 
          <>
          {/* Display the loading spinner while loading is true */ }
@@ -191,8 +210,9 @@ function Profile() {
       <h2>
    {/*   <FontAwesomeIcon icon={faHome} className="home-icon" /> */ }
         PROFILE DETAILS</h2>
+        <h3>Hello {name}<br />({email})</h3>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+      {/*  <div className="form-group">
           <label>Name:</label>
           <input
             type="text"
@@ -202,15 +222,15 @@ function Profile() {
           />
         </div>
         <div className="form-group">
-          <label>Email:</label>
+          <label>Email: {email}</label>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className='disabled-input' // Add the class conditionally
             disabled
-          />
-        </div>
+    />
+        </div>*/}
         <div className="form-group">
           <label>Age:</label>
           <input
@@ -254,7 +274,6 @@ function Profile() {
         </div>
         <div className="form-group buttons-container">
         <button type="submit" className='proB'>Save Changes</button>
-        <button onClick={handleGoBack} className='proB goBackButton'>Home Screen</button>
         </div>
         </form>
     </div>
