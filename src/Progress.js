@@ -17,6 +17,26 @@ import machineFly from './machineFly.gif';
 import chestDip from './chestDip.gif';
 import cableCrossover from './cableCrossover.gif';
 import diamondPushUp from './diamondPushUp.gif';
+import chestSqueeze from './chestSqueeze.gif';
+import reverseFly from './reverseFly.gif';
+import pushPress from './pushPress.gif';
+import facePull from './facePull.gif';
+import seeSawPress from './seeSawPress.gif';
+import rearDeltFly from './rearDeltFly.gif';
+import barbellFrontRaise from './barbellFrontRaise.gif';
+import deadLift from './deadLift.gif';
+import pullUp from './pullUp.gif';
+import cableRow from './cableRow.gif';
+import tBarRow from './tBarRow.gif';
+import latPullDown from './latPullDown.gif';
+import pendlayRow from './pendlayRow.gif';
+import lunges from './lunges.gif';
+import calfRaise from './calfRaise.gif';
+import legExtenstion from './legExtenstion.gif';
+import legCurl from './legCurl.gif';
+import squat from './squat.gif';
+import legPress from './legPress.gif';
+
 
 function Progress() {
   const [userProfile, setUser] = useState(null);
@@ -182,31 +202,145 @@ function Progress() {
 
  <p className="goalchoose">
   Your workout approach to {(selectedGoal=="Lose Weight")?"losing weight":(selectedGoal=="Gain Weight")?"gaining weight":"building muscles"} must be <br/><br />{(selectedGoal=="Lose Weight")?"LESS WEIGHTS, MORE REPS":(selectedGoal=="Gain Weight")?"MORE WEIGHTS, LESS REPS":"MORE WEIGHTS, MORE REPS"}</p>
-
+  
+  <div className="workTitle">Chest Workouts</div>
   <div class="grid-container">
   <div class="grid-item">
   <img src={benchPress} alt="Animation" className="workout-image"   />
   <br />Bench Press
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
   </div>
   <div class="grid-item">
   <img src={machineFly} alt="Animation" className="workout-image"   />
   <br />Machine Fly
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
   </div>
   <div class="grid-item">
   <img src={chestDip} alt="Animation" className="workout-image"   />
   <br />Chest Dip
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
   </div>  
   <div class="grid-item">
   <img src={cableCrossover} alt="Animation" className="workout-image"   />
-  <br />cableCrossover
+  <br />Cable Cross Over
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
   </div>
   <div class="grid-item">
   <img src={diamondPushUp} alt="Animation" className="workout-image"   />
-    <br />diamondPushUp
+    <br />Diamond Push Up
+    <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
   </div>
-  <div class="grid-item">6</div>  
-
+  <div class="grid-item">
+  <img src={chestSqueeze} alt="Animation" className="workout-image"   />
+    <br />Plate Squeeze Press
+    <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+    </div>
 </div>
+
+
+<div className="workTitle">Shoulder Workouts</div>
+  <div class="grid-container">
+  <div class="grid-item">
+  <img src={reverseFly} alt="Animation" className="workout-image"   />
+  <br />Reverse Fly
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>
+  <div class="grid-item">
+  <img src={pushPress} alt="Animation" className="workout-image"   />
+  <br />Push Press
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>
+  <div class="grid-item">
+  <img src={facePull} alt="Animation" className="workout-image"   />
+  <br />Face Pull
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>  
+  <div class="grid-item">
+  <img src={seeSawPress} alt="Animation" className="workout-image"   />
+  <br />See Saw Press
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>
+  <div class="grid-item">
+  <img src={rearDeltFly} alt="Animation" className="workout-image"   />
+    <br />Rear Delt Fly
+    <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>
+  <div class="grid-item">
+  <img src={barbellFrontRaise} alt="Animation" className="workout-image"   />
+    <br />Barbell Front Raise
+    <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+    </div>
+</div>
+
+<div className="workTitle">Lat Workouts</div>
+  <div class="grid-container">
+  <div class="grid-item">
+  <img src={deadLift} alt="Animation" className="workout-image"   />
+  <br />Deadlift
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>
+  <div class="grid-item">
+  <img src={pullUp} alt="Animation" className="workout-image"   />
+  <br />Pull Up
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>
+  <div class="grid-item">
+  <img src={cableRow} alt="Animation" className="workout-image"   />
+  <br />Cable Row
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>  
+  <div class="grid-item">
+  <img src={tBarRow} alt="Animation" className="workout-image"   />
+  <br />T-Bar Row
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>
+  <div class="grid-item">
+  <img src={latPullDown} alt="Animation" className="workout-image"   />
+    <br />Lat Pull Down
+    <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>
+  <div class="grid-item">
+  <img src={pendlayRow} alt="Animation" className="workout-image"   />
+    <br />Pendlay Row
+    <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+    </div>
+</div>
+
+
+<div className="workTitle">Leg Workouts</div>
+  <div class="grid-container">
+  <div class="grid-item">
+  <img src={lunges} alt="Animation" className="workout-image"   />
+  <br />Lunges
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>
+  <div class="grid-item">
+  <img src={calfRaise} alt="Animation" className="workout-image"   />
+  <br />Calf Raise
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>
+  <div class="grid-item">
+  <img src={legExtenstion} alt="Animation" className="workout-image"   />
+  <br />Leg Extension
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>  
+  <div class="grid-item">
+  <img src={legCurl} alt="Animation" className="workout-image"   />
+  <br />Leg Curl
+  <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>
+  <div class="grid-item">
+  <img src={squat} alt="Animation" className="workout-image"   />
+    <br />Squats
+    <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  </div>
+  <div class="grid-item">
+  <img src={legPress} alt="Animation" className="workout-image"   />
+    <br />Leg Press
+    <br /><span className='rep'>{(selectedGoal=="Lose Weight")?"4 x 30":(selectedGoal=="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+    </div>
+</div>
+
     </>
     )
     }

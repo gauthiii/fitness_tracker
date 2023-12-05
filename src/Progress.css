@@ -29,12 +29,17 @@
     font-weight: bold;
     font-size: 7vh;
   }
-
+.workTitle {
+  text-align: left;
+  font-weight: bold;
+  font-family: 'Noto Serif', sans-serif;
+  padding-left: 32px;
+}
   .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto;
 
-    padding: 10px;
+    padding: 5px;
   }
   .grid-item {
   
@@ -45,10 +50,15 @@
     text-align: center;
   }
 
+  .rep{
+    font-size: 2.5vh;
+    margin-top: -15px;
+  }
+
 .workout-image{
-  height: 18vw;
-  width: 18vw;
-  padding: 15px;
+  height: 10vw;
+  width: 10vw;
+  padding: 10px;
   border: 5px solid black;
 } 
 
