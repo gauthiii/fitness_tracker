@@ -55,6 +55,45 @@ function Progress() {
   const [selectedGoal, setSelectedGoal] = useState(null);
   const [showProgressBar, setShowProgressBar] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [selectedWorkouts, setSelectedWorkouts] = useState([]);
+
+  const chestWorkouts = [
+    { image: benchPress, name: 'Bench Press'},
+    { image: machineFly, name: 'Machine Fly'},
+    { image: chestDip, name: 'Chest Dip'},
+    { image: cableCrossover, name: 'Cable Cross Over'},
+    { image: diamondPushUp, name: 'Diamond Push Up'},
+    { image: chestSqueeze, name: 'Plate Squeeze Press'}
+  ];
+
+  const shoulderWorkouts = [
+    { image: reverseFly, name: 'Reverse Fly'},
+    { image: pushPress, name: 'Push Press'},
+    { image: facePull, name: 'Face Pull'},
+    { image: seeSawPress, name: 'See Saw Press'},
+    { image: rearDeltFly, name: 'Rear Delt Fly'},
+    { image: barbellFrontRaise, name: 'Barbell Front Raise'}
+  ];
+  
+  const latWorkouts = [
+    { image: deadLift, name: 'Deadlift'},
+    { image: pullUp, name: 'Pull Up'},
+    { image: cableRow, name: 'Cable Row'},
+    { image: tBarRow, name: 'T-Bar Row'},
+    { image: latPullDown, name: 'Lat Pull Down'},
+    { image: pendlayRow, name: 'Pendlay Row'}
+  ];
+
+  const legWorkouts = [
+    { image: lunges, name: 'Lunges'},
+    { image: calfRaise, name: 'Calf Raise'},
+    { image: legExtenstion, name: 'Leg Extension'},
+    { image: legCurl, name: 'Leg Curl'},
+    { image: squat, name: 'Squat'},
+    { image: legPress, name: 'Leg Press'}
+  ]; 
+    
+
 
   const handleLogout = async () => {
     try {
@@ -118,7 +157,7 @@ function Progress() {
       } else {
         // User is not logged in
         setUser(null);
-        window.location.href = '/progress';
+        window.location.href = '/';
       }
       setLoading(false); // Set loading to false when the check is complete
     });
@@ -163,6 +202,25 @@ function Progress() {
     } catch (error) {
       console.error('Error getting or creating document: ', error);
     }
+  };
+
+
+  const generateWorkoutSchedule = () => {
+    const chest = getRandomItems(chestWorkouts, 3);
+    const shoulder = getRandomItems(shoulderWorkouts, 3);
+    const lat = getRandomItems(latWorkouts, 3);
+    const leg = getRandomItems(legWorkouts, 3);
+
+    const selected = [...chest, ...shoulder, ...lat, ...leg];
+    setSelectedWorkouts([...chest, ...shoulder, ...lat, ...leg]);
+
+    console.log(selectedWorkouts);
+    //new changes
+  };
+
+  const getRandomItems = (array, numItems) => {
+    const shuffled = array.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, numItems);
   };
 
 
@@ -216,7 +274,7 @@ function Progress() {
         )}
 
 {
- selectedGoal!==null && !showProgressBar &&  (
+ selectedGoal!==null && !showProgressBar && selectedWorkouts.length ===0 &&  (
  <>
 
  <p className="goalchoose">
@@ -224,145 +282,131 @@ function Progress() {
   
   <div className="workTitle">Chest Workouts</div>
   <div class="grid-container">
-  <div class="grid-item">
-  <img src={benchPress} alt="Animation" className="workout-image"   />
-  <br />Bench Press
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={machineFly} alt="Animation" className="workout-image"   />
-  <br />Machine Fly
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={chestDip} alt="Animation" className="workout-image"   />
-  <br />Chest Dip
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>  
-  <div class="grid-item">
-  <img src={cableCrossover} alt="Animation" className="workout-image"   />
-  <br />Cable Cross Over
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={diamondPushUp} alt="Animation" className="workout-image"   />
-    <br />Diamond Push Up
-    <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={chestSqueeze} alt="Animation" className="workout-image"   />
-    <br />Plate Squeeze Press
-    <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  {chestWorkouts.map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
     </div>
+  ))}
 </div>
 
 
 <div className="workTitle">Shoulder Workouts</div>
   <div class="grid-container">
-  <div class="grid-item">
-  <img src={reverseFly} alt="Animation" className="workout-image"   />
-  <br />Reverse Fly
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={pushPress} alt="Animation" className="workout-image"   />
-  <br />Push Press
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={facePull} alt="Animation" className="workout-image"   />
-  <br />Face Pull
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>  
-  <div class="grid-item">
-  <img src={seeSawPress} alt="Animation" className="workout-image"   />
-  <br />See Saw Press
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={rearDeltFly} alt="Animation" className="workout-image"   />
-    <br />Rear Delt Fly
-    <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={barbellFrontRaise} alt="Animation" className="workout-image"   />
-    <br />Barbell Front Raise
-    <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  {shoulderWorkouts.map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
     </div>
+  ))}
 </div>
 
 <div className="workTitle">Lat Workouts</div>
   <div class="grid-container">
-  <div class="grid-item">
-  <img src={deadLift} alt="Animation" className="workout-image"   />
-  <br />Deadlift
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={pullUp} alt="Animation" className="workout-image"   />
-  <br />Pull Up
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={cableRow} alt="Animation" className="workout-image"   />
-  <br />Cable Row
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>  
-  <div class="grid-item">
-  <img src={tBarRow} alt="Animation" className="workout-image"   />
-  <br />T-Bar Row
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={latPullDown} alt="Animation" className="workout-image"   />
-    <br />Lat Pull Down
-    <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={pendlayRow} alt="Animation" className="workout-image"   />
-    <br />Pendlay Row
-    <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  {latWorkouts.map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
     </div>
+  ))}
 </div>
 
 
 <div className="workTitle">Leg Workouts</div>
   <div class="grid-container">
-  <div class="grid-item">
-  <img src={lunges} alt="Animation" className="workout-image"   />
-  <br />Lunges
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={calfRaise} alt="Animation" className="workout-image"   />
-  <br />Calf Raise
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={legExtenstion} alt="Animation" className="workout-image"   />
-  <br />Leg Extension
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>  
-  <div class="grid-item">
-  <img src={legCurl} alt="Animation" className="workout-image"   />
-  <br />Leg Curl
-  <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={squat} alt="Animation" className="workout-image"   />
-    <br />Squats
-    <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
-  </div>
-  <div class="grid-item">
-  <img src={legPress} alt="Animation" className="workout-image"   />
-    <br />Leg Press
-    <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+  {legWorkouts.map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
     </div>
+  ))}
 </div>
+
+<div className="prbutton-container">
+        <button type="button" className='prBut' onClick={generateWorkoutSchedule}>Generate a schedule for me</button>
+        </div>
+
+    
 
     </>
     )
     }
+
+{
+ selectedWorkouts.length>0 &&  (<div>
+   <br></br><br></br> <br></br><br></br>
+
+   <p className="goalchoose">Generated Workout Schedule for you</p>
+
+  <div className="workTitle">MONDAY</div>
+   <div class="grid-container">
+   {selectedWorkouts.slice(0, 3).map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal === "Lose Weight") ? "4 x 30" : (selectedGoal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
+    </div>
+  ))}
+</div>
+
+<div className="workTitle">TUESDAY</div>
+   <div class="grid-container">
+   {selectedWorkouts.slice(3, 6).map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal === "Lose Weight") ? "4 x 30" : (selectedGoal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
+    </div>
+  ))} 
+</div>
+
+<div className="workTitle">WEDNESDAY</div>
+   <div class="grid-container">
+   {selectedWorkouts.slice(6, 9).map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal === "Lose Weight") ? "4 x 30" : (selectedGoal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
+    </div>
+  ))}
+</div>
+
+<div className="workTitle">THURSDAY</div>
+   <div class="grid-container">
+   {selectedWorkouts.slice(9, 12).map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal === "Lose Weight") ? "4 x 30" : (selectedGoal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
+    </div>
+  ))}
+</div>
+
+<div className="workTitle">FRIDAY</div>
+   <div class="grid-container">
+   {selectedWorkouts.slice(0, 3).map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal === "Lose Weight") ? "4 x 30" : (selectedGoal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
+    </div>
+  ))}
+</div>
+
+<div className="prbutton-container">
+        <button type="button" className='prBut' onClick={generateWorkoutSchedule}>Save Schedule</button>
+        </div>
+
+
+ </div>
+
+ )}
+
+
 
       </div>
       )}
