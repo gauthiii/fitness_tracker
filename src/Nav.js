@@ -11,6 +11,7 @@ function Nav({handleLogout }){
           <li><Link to="/home">Home</Link></li>
           <li><Link to="/profile">Profile</Link></li>
           <li><Link to="/progress">Progress</Link></li>
+          <li><Link to="/schedule">Schedule</Link></li>
         </ul>
         <div className="dashboard-search-container">
           <input

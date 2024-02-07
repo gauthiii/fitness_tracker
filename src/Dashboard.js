@@ -281,7 +281,7 @@ function Dashboard() {
         
 
         <div className="workout-text">
-  <p onClick={checkView}>{ view ?'Navigate to original Home Screen':'Choose your Workout Schedule'}</p>
+  <p onClick={checkView}>{ view ?'Navigate to original Home Screen':'Click here to view Body Stats'}</p>
 </div>
 
     {view ? <>

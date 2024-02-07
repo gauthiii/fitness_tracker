@@ -5,6 +5,7 @@ import Dashboard from './Dashboard';
 import Profile from './Profile';
 import Login from './Login';
 import Progress from './Progress';
+import Schedule from './Progress';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
       <Route path="/home" element={<Dashboard />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/progress" element={<Progress />} />
+      <Route path="/schedule" element={<Schedule />} />
+      
       </Routes>
     </Router>
       </div>
