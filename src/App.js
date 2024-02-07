@@ -5,7 +5,7 @@ import Dashboard from './Dashboard';
 import Profile from './Profile';
 import Login from './Login';
 import Progress from './Progress';
-import Schedule from './Progress';
+import Schedule from './Schedule';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/progress" element={<Progress />} />
       <Route path="/schedule" element={<Schedule />} />
-      
+
       </Routes>
     </Router>
       </div>
