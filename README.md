@@ -1,10 +1,12 @@
-# Getting Started with Create React App
+# AI Based Fitness Tracking Website
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Instructions to run the code
 
-In the project directory, you can run:
+In the project directory, run:
+
+### `npm i`
 
 ### `npm start`
 
