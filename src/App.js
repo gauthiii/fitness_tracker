@@ -6,6 +6,7 @@ import Profile from './Profile';
 import Login from './Login';
 import Progress from './Progress';
 import Schedule from './Schedule';
+import Prediction from './Prediction';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/progress" element={<Progress />} />
       <Route path="/schedule" element={<Schedule />} />
+      <Route path="/prediction" element={<Prediction />} />
 
       </Routes>
     </Router>

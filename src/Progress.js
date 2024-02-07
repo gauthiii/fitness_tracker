@@ -267,7 +267,7 @@ const handleCloseDialog = () => {
 
   return (
     <div className="prb">
-      <Nav handleLogout={handleLogout} />
+      <Nav handleLogout={handleLogout} page="progress" />
       {loading ? ( 
          <>
          {/* Display the loading spinner while loading is true */ }

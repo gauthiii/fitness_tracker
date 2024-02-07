@@ -193,7 +193,7 @@ function Profile() {
 
   return (
     <div className="pb">
-      <Nav handleLogout={handleLogout} />
+      <Nav handleLogout={handleLogout} page="profile" />
         {loading ? ( 
          <>
          {/* Display the loading spinner while loading is true */ }

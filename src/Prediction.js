@@ -12,11 +12,7 @@ import './LoadingSpinner.css';
 
 import CanvasJSReact from '@canvasjs/react-charts'; 
 
-import animationGif from './wk1.gif';
-import animationGif2 from './wk2.gif';
-import animationGif3 from './wk3.gif';
-import animationGif4 from './wk4.gif';
-import animationGif5 from './wk5.gif';
+
 
 import CustomDialog from './CustomDialog.js';
 
@@ -277,15 +273,12 @@ function Dashboard() {
           <li onClick={handleLogout} ><Link to="/">Logout</Link></li>
         </ul>
       </div> */ }
-      <Nav handleLogout={handleLogout} page="home" />
+      <Nav handleLogout={handleLogout} page="prediction" />
         
 
-        <div className="workout-text">
-  <p onClick={checkView}>{ view ?'Navigate to original Home Screen':'Click here to view Body Stats'}</p>
-</div>
 
-    {view ? <>
-      
+  
+      <br></br><br></br>
       <div className="stat1">These are your body stats:</div>
     <div className="stat-text">
       <div className="stat-item">
@@ -335,24 +328,7 @@ function Dashboard() {
     <CanvasJSChart options={options} />
     </div>
     
-    </>:  
-      <>
-      {/* Main Content */}
-      <div className="main-content">
-        {/* Add your widgets and content here */}
-       {/* <img src={loginImage} alt="Login" className="login-image" />*/}
-        <img src={animationGif} alt="Animation" className="login-image"   />
-
-        <img src={animationGif2} alt="Animation" className="login-image"   />
-
-        <img src={animationGif3} alt="Animation" className="login-image"   />
-
-        <img src={animationGif4} alt="Animation" className="login-image"   />
-
-        <img src={animationGif5} alt="Animation" className="login-image"  />
-        {/* Add your widgets and content below */}
-      </div>
-      </>}
+   
 
       
 
