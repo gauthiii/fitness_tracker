@@ -14,7 +14,7 @@ function Nav({handleLogout,page }){
           <li><Link to="/profile" className={page!=="profile"?"naLI":"naLI1"}>Profile</Link></li>
           <li><Link to="/progress" className={page!=="progress"?"naLI":"naLI1"}>Progress</Link></li>
           <li><Link to="/schedule" className={page!=="schedule"?"naLI":"naLI1"}>Schedule</Link></li>
-          <li><Link to="/prediction" className={page==="prediction"?"naLI":"naLI1"}>Prediction</Link></li>
+          <li><Link to="/prediction" className={page!=="prediction"?"naLI":"naLI1"}>Prediction</Link></li>
         </ul>
         <div className="dashboard-search-container">
           <input
