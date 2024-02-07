@@ -5,7 +5,7 @@ import './Progress.css'; // Import your custom CSS file
 
 import firebase from './firebase';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, updateDoc, setDoc } from 'firebase/firestore';
 
 import Nav from './Nav.js';
 
@@ -205,17 +205,45 @@ function Progress() {
   };
 
 
-  const generateWorkoutSchedule = () => {
+  const generateWorkoutSchedule = async () => {
+    setLoading(true);
+
     const chest = getRandomItems(chestWorkouts, 3);
     const shoulder = getRandomItems(shoulderWorkouts, 3);
     const lat = getRandomItems(latWorkouts, 3);
     const leg = getRandomItems(legWorkouts, 3);
+    
 
     const selected = [...chest, ...shoulder, ...lat, ...leg];
     setSelectedWorkouts([...chest, ...shoulder, ...lat, ...leg]);
 
     console.log(selectedWorkouts);
     //new changes
+
+    const db = getFirestore(firebase);
+    const userDocRef = doc(db, 'ft_users', userProfile.email);
+
+
+    try {
+      await updateDoc(userDocRef, {
+      goal:selectedGoal,  
+      schedule: selectedWorkouts
+      });
+      console.log('User details updated in Firestore');
+      // You can also show a success message or handle redirection as needed
+      getOrCreateDocument(userProfile.email);
+      setError("Your schedule is saved in Firestore!");
+      setIsDialogOpen(true);
+      
+    } catch (error) {
+      console.error('Error updating user details:', error);
+      // Handle the error, possibly by displaying an error message to the user
+      setError("Your schedule couldn't get updated. Please try again!");
+      setIsDialogOpen(true);
+    
+    }
+    
+    setLoading(false);
   };
 
   const getRandomItems = (array, numItems) => {
@@ -223,7 +251,14 @@ function Progress() {
     return shuffled.slice(0, numItems);
   };
 
+  const randomNumber = (min, max) => {
+    return Math.random() * (max - min) + min;
+}
 
+const handleCloseDialog = () => {
+  // Close the custom dialog
+  setIsDialogOpen(false);
+};
 
   useEffect(() => {
     // Check user authentication state when the component mounts
@@ -410,6 +445,12 @@ function Progress() {
 
       </div>
       )}
+      {/* Custom dialog */}
+     <CustomDialog
+        isOpen={isDialogOpen}
+        onClose={handleCloseDialog}
+        message={errorMessage}
+      />
     </div>
   );
 }
