@@ -10,14 +10,18 @@ const PoseNet = () => {
 
   useEffect(() => {
     const loadPosenet = async () => {
-      const net = await posenet.load({ architecture: 'mobilenet_v1', outputStride: 16 });
+      const net = await posenet.load({ architecture: 'MobileNetV1', outputStride: 16 });
       console.log('Posenet model loaded');
 
       const handlePredictions = async () => {
         if (typeof webcamRef.current !== 'undefined' && webcamRef.current !== null) {
           const video = webcamRef.current.video;
-          const pose = await net.estimateSinglePose(video, { flipHorizontal: true });
-          setPoses([pose]);
+
+          // Ensure video dimensions are valid before processing
+          if (video.videoWidth > 0 && video.videoHeight > 0) {
+            const pose = await net.estimateSinglePose(video, { flipHorizontal: true });
+            setPoses([pose]);
+          }
 
           requestAnimationFrame(handlePredictions); // Schedule next frame prediction
         }
