@@ -282,17 +282,7 @@ function Dashboard() {
   
       <br></br><br></br>
       <div className="stat1">Pose Estimation:</div>
-    <div className="stat-text">
-      <div className="stat-item">
-        <p>Age: {userProfile.age} years</p>
-      </div>
-      <div className="stat-item">
-        <p>Weight: {userProfile.weight}</p>
-      </div>
-      <div className="stat-item">
-        <p>Height: {userProfile.height}</p>
-      </div>
-    </div>
+   
 
     <PoseNet />
 
