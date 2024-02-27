@@ -1,24 +1,34 @@
-import React, { useState } from "react";
-import PoseNet from "react-posenet";
+import React, { useState, useEffect, useRef } from 'react';
+import * as tf from '@tensorflow/tfjs';
+import * as posenet from '@tensorflow-models/posenet';
+import Webcam from 'react-webcam';
 
-export default function App() {
-  const [video, setVideo] = useState(new Image());
-  return (
-    <div>
-      <video
-        muted
-        crossOrigin="anonymous"
-        src="https://i.imgur.com/PAtL4cd.mp4"
-        ref={v => {
-          if (v) {
-            v.onloadedmetadata = () => {
-              setVideo(v);
-              setTimeout(() => v.play(), 3000);
-            };
-          }
-        }}
-      />
-      <PoseNet input={video} />
-    </div>
-  );
-}
+const PoseNet = () => {
+  const webcamRef = useRef(null);
+  const [poses, setPoses] = useState([]);
+
+  useEffect(() => {
+    const loadPosenet = async () => {
+      const net = await posenet.load({ architecture: 'mobilenet_v1', outputStride: 16 });
+      console.log('Posenet model loaded');
+
+      const handlePredictions = async () => {
+        if (typeof webcamRef.current !== 'undefined' && webcamRef.current !== null) {
+          const video = webcamRef.current.video;
+          const pose = await net.estimateSinglePose(video, { flipHorizontal: true });
+          setPoses([pose]);
+
+          requestAnimationFrame(handlePredictions);
+        }
+      };
+
+      handlePredictions();
+    };
+
+    loadPosenet();
+  }, []);
+
+  // ... (render function will be provided later)
+};
+
+export default PoseNet;
