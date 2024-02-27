@@ -16,6 +16,8 @@ import CanvasJSReact from '@canvasjs/react-charts';
 
 import CustomDialog from './CustomDialog.js';
 
+import PoseNet from './PoseNet';
+
 function Dashboard() {
 
 
@@ -291,6 +293,9 @@ function Dashboard() {
         <p>Height: {userProfile.height}</p>
       </div>
     </div>
+
+    <PoseNet />
+    
     <div className="stat1">Your Body Index Mass (BMI) is: {bmi}</div>
     <div className="stat1">Your Weight Status: {getWeightStatus(parseFloat(bmi))}</div><br></br>
 

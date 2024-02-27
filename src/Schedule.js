@@ -37,7 +37,7 @@ import legCurl from './legCurl.gif';
 import squat from './squat.gif';
 import legPress from './legPress.gif';
 
-import PoseNet from './PoseNet';
+
 
 
 function Progress() {
@@ -295,7 +295,7 @@ const handleCloseDialog = () => {
 {
  userProfile.schedule.length>0 &&  (<div>
 
-      <PoseNet />
+   
  
   <div className="workTitle">MONDAY</div>
    <div class="grid-container">
