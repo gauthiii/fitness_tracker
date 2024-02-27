@@ -281,7 +281,7 @@ function Dashboard() {
 
   
       <br></br><br></br>
-      <div className="stat1">These are your body stats:</div>
+      <div className="stat1">Pose Estimation:</div>
     <div className="stat-text">
       <div className="stat-item">
         <p>Age: {userProfile.age} years</p>
@@ -295,43 +295,8 @@ function Dashboard() {
     </div>
 
     <PoseNet />
-    
-    <div className="stat1">Your Body Index Mass (BMI) is: {bmi}</div>
-    <div className="stat1">Your Weight Status: {getWeightStatus(parseFloat(bmi))}</div><br></br>
 
-    <table className="bmi-table">
-    <thead>
-      <tr>
-        <th>BMI</th>
-        <th>Weight Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Below 18.5</td>
-        <td>Underweight</td>
-      </tr>
-      <tr>
-        <td>18.5 – 24.9</td>
-        <td>Healthy Weight</td>
-      </tr>
-      <tr>
-        <td>25.0 – 29.9</td>
-        <td>Overweight</td>
-      </tr>
-      <tr>
-        <td>30.0 and Above</td>
-        <td>Obesity</td>
-      </tr>
-    </tbody>
-  </table>
-
-  
-    <div className="stat1">Now choose your goal</div>
-
-    <div className="chart-container">
-    <CanvasJSChart options={options} />
-    </div>
+   
     
    
 
