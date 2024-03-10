@@ -279,10 +279,11 @@ function Dashboard() {
       </div> */ }
       <Nav handleLogout={handleLogout} page="home" />
         
-
+  {/* 
         <div className="workout-text">
   <p onClick={checkView}>{ view ?'Navigate to original Home Screen':'Click here to view Body Stats'}</p>
 </div>
+*/}
 
     {view ? <>
       
@@ -352,6 +353,56 @@ function Dashboard() {
         <img src={animationGif5} alt="Animation" className="login-image"  />
         {/* Add your widgets and content below */}
       </div>
+
+      <div className="stat1">These are your body stats:</div>
+    <div className="stat-text">
+      <div className="stat-item">
+        <p>Age: {userProfile.age} years</p>
+      </div>
+      <div className="stat-item">
+        <p>Weight: {userProfile.weight}</p>
+      </div>
+      <div className="stat-item">
+        <p>Height: {userProfile.height}</p>
+      </div>
+    </div>
+    <div className="stat1">Your Body Index Mass (BMI) is: {bmi}</div>
+    <div className="stat1">Your Weight Status: {getWeightStatus(parseFloat(bmi))}</div><br></br>
+
+    <table className="bmi-table">
+    <thead>
+      <tr>
+        <th>BMI</th>
+        <th>Weight Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Below 18.5</td>
+        <td>Underweight</td>
+      </tr>
+      <tr>
+        <td>18.5 – 24.9</td>
+        <td>Healthy Weight</td>
+      </tr>
+      <tr>
+        <td>25.0 – 29.9</td>
+        <td>Overweight</td>
+      </tr>
+      <tr>
+        <td>30.0 and Above</td>
+        <td>Obesity</td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+    <div className="stat1">Now choose your goal</div>
+
+    <div className="chart-container">
+    <CanvasJSChart options={options} />
+    </div>
+    
       </>}
 
       
