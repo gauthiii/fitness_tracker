@@ -282,6 +282,7 @@ function Dashboard() {
   
       <br></br><br></br>
       <div className="stat1">Pose Estimation:</div>
+      <br></br> <br></br><br></br>
    
 
     <PoseNet />
