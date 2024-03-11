@@ -129,7 +129,7 @@ function Dashboard() {
           animationEnabled: true,
           
           title: {
-            text: "Projected Weight Loss Over 6 Months",
+            text: "Projected Weight Loss Over 20 Weeks",
             fontColor: "black",
             horizontalAlign: "center", // Center-align the title
           margin: 20, // Add padding under the title
@@ -156,19 +156,33 @@ function Dashboard() {
           },
           
           backgroundColor: "brown", // Set the background color here
-          width: 600, // Set the width of the chart in pixels
-          height: 400, // Set the height of the chart in pixels
+          width: 1000, // Set the width of the chart in pixels
+          height: 600, // Set the height of the chart in pixels
           data: [
             {
               type: "spline",
               color: "black",
               dataPoints: [
-                { label: "Jan", y: wt },
-                { label: "Feb", y: wt-10 },
-                {label: "Mar", y: wt-26 },
-                { label: "Apr", y: wt-43 },
-                { label: "May", y: wt-51 },
-                {label: "June", y: wt-66 }, 
+                { label: "Week 1", y: wt },
+                { label: "Week 2", y: wt-10 },
+                {label: "Week 3", y: wt-15 },
+                { label: "Week 4", y: wt-18 },
+                { label: "Week 5", y: wt-17 },
+                {label: "Week 6", y: wt-20 }, 
+                { label: "Week 7", y: wt-22 },
+                { label: "Week 8", y: wt-24 },
+                {label: "Week 9", y: wt-20 },
+                { label: "Week 10", y: wt-23 },
+                { label: "Week 11", y: wt-28 },
+                {label: "Week 12", y: wt-33 }, 
+                { label: "Week 13", y: wt-33 },
+                { label: "Week 14", y: wt-32 },
+                {label: "Week 15", y: wt-33 }, 
+                { label: "Week 16", y: wt-33 },
+                { label: "Week 17", y: wt-33 },
+                {label: "Week 18", y: wt-33 }, 
+                { label: "Week 19", y: wt-33 },
+                {label: "Week 20", y: wt-33 }, 
               ],
             },
           ],

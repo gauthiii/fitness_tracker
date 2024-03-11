@@ -1,7 +1,7 @@
 /* Dashboard.css */
  .db {
   background-color: brown;
-  min-height: 100vh;
+  min-height: 150vh;
   
 }
 
@@ -11,9 +11,9 @@
   align-items: center;
   margin-top: 30px;
   margin-bottom: 30px;
-  margin-left: 30vw;
+  margin-left: 18vw;
   border: 2px solid black;
-  width: 600px;
+  width: 1000px;
 }
 
 
