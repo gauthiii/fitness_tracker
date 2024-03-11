@@ -124,7 +124,8 @@ function Dashboard() {
 
 
         calcBmi(`${bmi_val.toFixed(2)}`);
-
+       
+        if (userData.goal==='Lose Weight')
         setOptions({
           animationEnabled: true,
           
@@ -143,7 +144,7 @@ function Dashboard() {
           gridColor: "black", // Set the grid lines color to black
           },
           axisX: {
-            title: "Months",
+            title: "Weeks",
             titleFontColor: "black",
             lineColor: "black",
             tickColor: "black", // Set the X-axis tick color to black
@@ -183,6 +184,74 @@ function Dashboard() {
                 {label: "Week 18", y: wt-33 }, 
                 { label: "Week 19", y: wt-33 },
                 {label: "Week 20", y: wt-33 }, 
+              ],
+            },
+          ],
+          plotOptions: {
+            line: {
+              borderColor: "black", // Set the border color to black
+            },
+          },
+        });
+        else
+        setOptions({
+          animationEnabled: true,
+          
+          title: {
+            text: "Projected Weight Gain Over 20 Weeks",
+            fontColor: "black",
+            horizontalAlign: "center", // Center-align the title
+          margin: 20, // Add padding under the title
+          },
+          axisY: {
+            title: "Weight (kg)",
+            titleFontColor: "black",
+            lineColor: "black",
+            tickColor: "black", // Set the X-axis tick color to black
+          tickLength: 10, // Set the length of ticks on the X-axis
+          gridColor: "black", // Set the grid lines color to black
+          },
+          axisX: {
+            title: "Weeks",
+            titleFontColor: "black",
+            lineColor: "black",
+            tickColor: "black", // Set the X-axis tick color to black
+          tickLength: 10, // Set the length of ticks on the X-axis
+          gridColor: "black", // Set the grid lines color to black
+            
+          },
+          legend: {
+            fontColor: "black", // Change the legend title font color to black
+          },
+          
+          backgroundColor: "brown", // Set the background color here
+          width: 1000, // Set the width of the chart in pixels
+          height: 600, // Set the height of the chart in pixels
+          data: [
+            {
+              type: "spline",
+              color: "black",
+              dataPoints: [
+                { label: "Week 1", y: wt },
+                { label: "Week 2", y: wt+10 },
+                {label: "Week 3", y: wt+15 },
+                { label: "Week 4", y: wt+18 },
+                { label: "Week 5", y: wt+17 },
+                {label: "Week 6", y: wt+20 }, 
+                { label: "Week 7", y: wt+22 },
+                { label: "Week 8", y: wt+24 },
+                {label: "Week 9", y: wt+20 },
+                { label: "Week 10", y: wt+23 },
+                { label: "Week 11", y: wt+28 },
+                {label: "Week 12", y: wt+33 }, 
+                { label: "Week 13", y: wt+33 },
+                { label: "Week 14", y: wt+32 },
+                {label: "Week 15", y: wt+33 }, 
+                { label: "Week 16", y: wt+33 },
+                { label: "Week 17", y: wt+33 },
+                {label: "Week 18", y: wt+33 }, 
+                { label: "Week 19", y: wt+33 },
+                {label: "Week 20", y: wt+33 }, 
               ],
             },
           ],
