@@ -366,6 +366,13 @@ function Dashboard() {
         <p>Height: {userProfile.height}</p>
       </div>
     </div>
+
+    <div className="stat-text">
+      <div className="stat-item">
+        <p>Your GOAL: {userProfile.goal}</p>
+      </div>
+    </div>
+
     <div className="stat1">Your Body Index Mass (BMI) is: {bmi}</div>
     <div className="stat1">Your Weight Status: {getWeightStatus(parseFloat(bmi))}</div><br></br>
 

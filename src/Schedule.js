@@ -284,7 +284,7 @@ const handleCloseDialog = () => {
        
       {showProgressBar ?<><div className='buffer'></div> <p className="goalchoose">Fetching results to {selectedGoal}</p></> 
       :
-      (  <div className="goal-buttons">
+      userProfile.schedule && (  <div className="goal-buttons">
           <p className="goalchoose">{selectedGoal===null && "Your workout schedule ("+ userProfile.goal+")"}</p>
          
         </div>)}
@@ -293,7 +293,7 @@ const handleCloseDialog = () => {
 
 
 {
- userProfile.schedule.length>0 &&  (<div>
+ userProfile.schedule ? (<div>
 
    
  
@@ -355,6 +355,12 @@ const handleCloseDialog = () => {
 
  </div>
 
+ ):(
+  <>
+  <div className="goal-buttons">
+          <p className="goalchoose">{selectedGoal===null && "Choose your schedule from the Progress Tab"}</p>
+         
+        </div></>
  )}
 
 
