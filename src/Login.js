@@ -176,7 +176,8 @@ function Login() {
           email: email,
           age:'',
           height:'',
-          weight:''
+          weight:'',
+          week:[]
           // Add more data as needed
         });
         

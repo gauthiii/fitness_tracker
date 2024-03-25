@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 import firebase from './firebase';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import Nav from './Nav.js';
 
 import './Dashboard.css';
@@ -19,6 +19,7 @@ import animationGif4 from './wk4.gif';
 import animationGif5 from './wk5.gif';
 
 import CustomDialog from './CustomDialog.js';
+import { parse } from '@fortawesome/fontawesome-svg-core';
 
 function Dashboard() {
 
@@ -34,7 +35,12 @@ function Dashboard() {
 
   const [bmi, calcBmi] = useState('');
 
+  const [ideal,calcIdeal] = useState('');
+
   const [options, setOptions] = useState(null);
+  
+  const [predicted,setPredicted]= useState([0,0,0,0,0,0,0,0,0,0])
+
 
 
 
@@ -69,8 +75,75 @@ function Dashboard() {
 
   };
 
+  const handleUpdate = async () => {
+    setLoading(true);
+
+    const db = getFirestore(firebase);
+    const userDocRef = doc(db, 'ft_users', userProfile.email);
+
+
+
+    if(userProfile.weight==-1)
+    {
+      setError("Details can't be Blank!");
+      setIsDialogOpen(true);
+    }
+   else{
+    try {
+      
+      
+      await updateDoc(userDocRef, {
+        weight:userProfile.week[0]+" kgs",
+        week: userProfile.week
+      });
+      console.log('User weights updated in Firestore');
+      // You can also show a success message or handle redirection as needed
+      getOrCreateDocument(userProfile.email);
+      setError("Your weights are updated!");
+      setIsDialogOpen(true);
+      
+    } catch (error) {
+      console.error('Error updating user details:', error);
+      // Handle the error, possibly by displaying an error message to the user
+      setError("Your weights couldn't get updated. Please try again!");
+      setIsDialogOpen(true);
+    
+    }
+  }
+
+    setLoading(false); 
+  }
+
+
+  const handleWeightChange = (index, value) => {
+    const updatedWeights = [...userProfile.week];
+    updatedWeights[index] = value;
+    updatedWeights[index] = value-0;
+
+    for(var i =index+1;i<updatedWeights.length;i++){
+      if(userProfile.goal=="Lose Weight")
+     updatedWeights[i]=updatedWeights[i-1]-Math.floor(Math.random() * 5)
+    else
+    updatedWeights[i]=updatedWeights[i-1]+Math.floor(Math.random() * 5)
+
+    if( updatedWeights[i] ===NaN)
+    {setError("Incorrect Entry");
+      setIsDialogOpen(true);
+      break;
+}
+
+    }
+
+    setUser(prevState => ({
+      ...prevState,
+      week: updatedWeights,
+    }));
+};
 
   const getOrCreateDocument = async (email) => {
+
+    setLoading(true); 
+
     const db = getFirestore(firebase);
 
  
@@ -86,8 +159,11 @@ function Dashboard() {
         const userData = docSnapshot.data();
         
       
+          console.log("Snapshot: ",docSnapshot.data())
 
-       setUser(userData);
+       setUser(docSnapshot.data());
+
+       console.log("DB User data:",userProfile)
 
         
        if(userData.weight==='' || userData.height==='' || userData.height===' undefined' || userData.weight===' undefined' || userData.age==='')
@@ -122,10 +198,33 @@ function Dashboard() {
         
         let bmi_val = (wt/ht/ht)*10000;
 
+        let ide1=(18.5*ht*ht)/10000;
+
+        let ide2=(24.9*ht*ht)/10000;
+
+        if(bmi_val>24.9)
+        calcIdeal(`${ide2.toFixed(2)}`)
+        if (bmi_val<18.5)
+      calcIdeal(`${ide1.toFixed(2)}`)
+        if (bmi_val>=18.5 && bmi_val<=24.9)
+        calcIdeal(`${wt.toFixed(2)}`)
+
 
         calcBmi(`${bmi_val.toFixed(2)}`);
        
         if (userData.goal==='Lose Weight')
+       { 
+        
+     
+
+      
+
+        let dp = userData.week.map((value, index) => ({
+          label: `Week ${index + 1}`, y: parseFloat(value)
+        }));
+        
+
+        
         setOptions({
           animationEnabled: true,
           
@@ -163,28 +262,7 @@ function Dashboard() {
             {
               type: "spline",
               color: "black",
-              dataPoints: [
-                { label: "Week 1", y: wt },
-                { label: "Week 2", y: wt-10 },
-                {label: "Week 3", y: wt-15 },
-                { label: "Week 4", y: wt-18 },
-                { label: "Week 5", y: wt-17 },
-                {label: "Week 6", y: wt-20 }, 
-                { label: "Week 7", y: wt-22 },
-                { label: "Week 8", y: wt-24 },
-                {label: "Week 9", y: wt-20 },
-                { label: "Week 10", y: wt-23 },
-                { label: "Week 11", y: wt-28 },
-                {label: "Week 12", y: wt-33 }, 
-                { label: "Week 13", y: wt-33 },
-                { label: "Week 14", y: wt-32 },
-                {label: "Week 15", y: wt-33 }, 
-                { label: "Week 16", y: wt-33 },
-                { label: "Week 17", y: wt-33 },
-                {label: "Week 18", y: wt-33 }, 
-                { label: "Week 19", y: wt-33 },
-                {label: "Week 20", y: wt-33 }, 
-              ],
+              dataPoints: dp,
             },
           ],
           plotOptions: {
@@ -192,8 +270,14 @@ function Dashboard() {
               borderColor: "black", // Set the border color to black
             },
           },
-        });
+        });}
         else
+       { 
+
+        let dp = userData.week.map((value, index) => ({
+          label: `Week ${index + 1}`, y: parseFloat(value)
+        }));
+        
         setOptions({
           animationEnabled: true,
           
@@ -231,28 +315,7 @@ function Dashboard() {
             {
               type: "spline",
               color: "black",
-              dataPoints: [
-                { label: "Week 1", y: wt },
-                { label: "Week 2", y: wt+10 },
-                {label: "Week 3", y: wt+15 },
-                { label: "Week 4", y: wt+18 },
-                { label: "Week 5", y: wt+17 },
-                {label: "Week 6", y: wt+20 }, 
-                { label: "Week 7", y: wt+22 },
-                { label: "Week 8", y: wt+24 },
-                {label: "Week 9", y: wt+20 },
-                { label: "Week 10", y: wt+23 },
-                { label: "Week 11", y: wt+28 },
-                {label: "Week 12", y: wt+33 }, 
-                { label: "Week 13", y: wt+33 },
-                { label: "Week 14", y: wt+32 },
-                {label: "Week 15", y: wt+33 }, 
-                { label: "Week 16", y: wt+33 },
-                { label: "Week 17", y: wt+33 },
-                {label: "Week 18", y: wt+33 }, 
-                { label: "Week 19", y: wt+33 },
-                {label: "Week 20", y: wt+33 }, 
-              ],
+              dataPoints: dp,
             },
           ],
           plotOptions: {
@@ -260,7 +323,7 @@ function Dashboard() {
               borderColor: "black", // Set the border color to black
             },
           },
-        });
+        });}
       
       }
 
@@ -272,8 +335,12 @@ function Dashboard() {
       }
     } catch (error) {
       console.error('Error getting or creating document: ', error);
+      setError("Error getting or creating document: "+error);
+           setIsDialogOpen(true);
     }
   };
+
+  
 
   
   
@@ -368,59 +435,7 @@ function Dashboard() {
 </div>
 */}
 
-    {view ? <>
-      
-      <div className="stat1">These are your body stats:</div>
-    <div className="stat-text">
-      <div className="stat-item">
-        <p>Age: {userProfile.age} years</p>
-      </div>
-      <div className="stat-item">
-        <p>Weight: {userProfile.weight}</p>
-      </div>
-      <div className="stat-item">
-        <p>Height: {userProfile.height}</p>
-      </div>
-    </div>
-    <div className="stat1">Your Body Index Mass (BMI) is: {bmi}</div>
-    <div className="stat1">Your Weight Status: {getWeightStatus(parseFloat(bmi))}</div><br></br>
-
-    <table className="bmi-table">
-    <thead>
-      <tr>
-        <th>BMI</th>
-        <th>Weight Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Below 18.5</td>
-        <td>Underweight</td>
-      </tr>
-      <tr>
-        <td>18.5 – 24.9</td>
-        <td>Healthy Weight</td>
-      </tr>
-      <tr>
-        <td>25.0 – 29.9</td>
-        <td>Overweight</td>
-      </tr>
-      <tr>
-        <td>30.0 and Above</td>
-        <td>Obesity</td>
-      </tr>
-    </tbody>
-  </table>
-
-  
-    <div className="stat1">Now choose your goal</div>
-
-    <div className="chart-container">
-    <CanvasJSChart options={options} />
-    </div>
     
-    </>:  
-      <>
       {/* Main Content */}
       <div className="main-content">
         {/* Add your widgets and content here */}
@@ -450,11 +465,7 @@ function Dashboard() {
       </div>
     </div>
 
-    <div className="stat-text">
-      <div className="stat-item">
-        <p>Your GOAL: {userProfile.goal}</p>
-      </div>
-    </div>
+    
 
     <div className="stat1">Your Body Index Mass (BMI) is: {bmi}</div>
     <div className="stat1">Your Weight Status: {getWeightStatus(parseFloat(bmi))}</div><br></br>
@@ -487,13 +498,30 @@ function Dashboard() {
   </table>
 
   
-    <div className="stat1">Now choose your goal</div>
+    <div className="stat1">Ideal Weight : {ideal} Kgs</div>
+
+    <div className="stat-text">
+      <div className="stat-item">
+        <p>Your GOAL: {userProfile.goal}</p>
+      </div>
+    </div>
 
     <div className="chart-container">
     <CanvasJSChart options={options} />
     </div>
     
-      </>}
+    <div className="updateText">Update Weight Change</div><br></br>
+    <div className="changeBorder">
+    {userProfile.week.map((week, index) => (<>
+    Week {index+1}<input className='change' value={userProfile.week[index]} onChange={(e) => handleWeightChange(index, e.target.value)}></input>Kgs<br></br>
+    </>
+     ))}
+    </div>
+
+    <div className="prbutton2-container">
+        <button type="button" className='prBut2' onClick={handleUpdate}>Save Weight Progress</button>
+        </div>
+    
 
       
 

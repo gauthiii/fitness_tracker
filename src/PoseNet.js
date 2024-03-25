@@ -51,7 +51,7 @@ const PoseNet = () => {
       context.lineWidth = 2;
 
       poses.forEach(({ score, keypoints }) => {
-        if (score > 0) { // Display poses with a confidence score above 0.5
+        if (score > 0.2) { // Display poses with a confidence score above 0.5
           keypoints.forEach(keypoint => {
             context.beginPath();
             context.arc(keypoint.position.x, keypoint.position.y, 3, 0, 2 * Math.PI);
@@ -107,13 +107,6 @@ const PoseNet = () => {
         ref={webcamRef}
         style={{ width: 640, height: 480 }}
       />
-      <canvas
-        ref={canvasRef}
-        width={640}
-        height={480}
-        style={{ display: 'block' }}
-      />
-      {renderPoses()}
   
     </div>
   );

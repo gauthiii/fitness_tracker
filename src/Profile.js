@@ -34,7 +34,8 @@ function Profile() {
     email:'',
     age:'',
     height:'',
-    weight:''
+    weight:'',
+    week:[]
 
   });
 
@@ -143,12 +144,14 @@ function Profile() {
     }
    else{
     try {
+      let wt=parseFloat(weight)
       await updateDoc(userDocRef, {
       name:  name,
         email: email,
         age: age,
         height: height + " " + heightUnit,
         weight: weight + " " + weightUnit,
+        
       });
       console.log('User details updated in Firestore');
       // You can also show a success message or handle redirection as needed

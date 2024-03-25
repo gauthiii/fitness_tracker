@@ -220,14 +220,36 @@ function Progress() {
     console.log(selectedWorkouts);
     //new changes
 
+    if(selectedWorkouts.length==0){
+      setError("Your schedule couldn't get updated. Please try again!");
+      setIsDialogOpen(true);
+    }
+
+    else {
+
     const db = getFirestore(firebase);
     const userDocRef = doc(db, 'ft_users', userProfile.email);
 
+    let x=[]
+    let wt= parseFloat(userProfile.weight.split(" ")[0]);
+    
+
+    if(userProfile.weight.split(" ")[1]==="lbs")
+    {
+      // convert to kg
+      wt=wt/2.205;
+    }
+
+     if (selectedGoal =='Lose Weight')
+      x=[wt,wt-10,wt-15,wt-18,wt-17,wt-20,wt-22,wt-24,wt-20,wt-23,wt-28]
+    else
+      x=[wt,wt+10,wt+15,wt+18,wt+17,wt+20,wt+22,wt+24,wt+20,wt+23,wt+28]
 
     try {
       await updateDoc(userDocRef, {
       goal:selectedGoal,  
-      schedule: selectedWorkouts
+      schedule: selectedWorkouts,
+      week: x
       });
       console.log('User details updated in Firestore');
       // You can also show a success message or handle redirection as needed
@@ -242,6 +264,7 @@ function Progress() {
       setIsDialogOpen(true);
     
     }
+  }
     
     setLoading(false);
   };
