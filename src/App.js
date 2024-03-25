@@ -18,7 +18,7 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/home" element={<Dashboard />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/progress" element={<Progress />} />
+      <Route path="/goal" element={<Progress />} />
       <Route path="/schedule" element={<Schedule />} />
       <Route path="/prediction" element={<Prediction />} />
 

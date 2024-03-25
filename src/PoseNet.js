@@ -3,10 +3,39 @@ import * as tf from '@tensorflow/tfjs';
 import * as posenet from '@tensorflow-models/posenet';
 import Webcam from 'react-webcam';
 
+import benchPress from './benchPress.gif';
+import machineFly from './machineFly.gif';
+import chestDip from './chestDip.gif';
+import cableCrossover from './cableCrossover.gif';
+import diamondPushUp from './diamondPushUp.gif';
+import chestSqueeze from './chestSqueeze.gif';
+import reverseFly from './reverseFly.gif';
+import pushPress from './pushPress.gif';
+import facePull from './facePull.gif';
+import seeSawPress from './seeSawPress.gif';
+import rearDeltFly from './rearDeltFly.gif';
+import barbellFrontRaise from './barbellFrontRaise.gif';
+import deadLift from './deadLift.gif';
+import pullUp from './pullUp.gif';
+import cableRow from './cableRow.gif';
+import tBarRow from './tBarRow.gif';
+import latPullDown from './latPullDown.gif';
+import pendlayRow from './pendlayRow.gif';
+import lunges from './lunges.gif';
+import calfRaise from './calfRaise.gif';
+import legExtenstion from './legExtenstion.gif';
+import legCurl from './legCurl.gif';
+import squat from './squat.gif';
+import legPress from './legPress.gif';
+import running from './running.mp4'
+
+
 const PoseNet = () => {
   const webcamRef = useRef(null);
+  const sampleVideoRef = useRef(null);
   const canvasRef = useRef(null);
   const [poses, setPoses] = useState([]);
+  const [samplePoses, setSamplePoses] = useState([]);
 
   useEffect(() => {
     const loadPosenet = async () => {
@@ -18,29 +47,33 @@ const PoseNet = () => {
         });
         console.log('Posenet model loaded');
 
-        const handlePredictions = async () => {
-          if (webcamRef.current && webcamRef.current.video.readyState === 4) {
-            const video = webcamRef.current.video;
-
+        const handlePredictions = async (videoRef, setPosesFunc) => {
+          // Check if the videoRef and the video element are defined
+          if (videoRef.current && videoRef.current.video && videoRef.current.video.readyState === 4) {
+            const video = videoRef.current.video;
+        
             // Ensure video dimensions are valid before processing
             if (video.videoWidth > 0 && video.videoHeight > 0) {
               const pose = await net.estimateSinglePose(video, { flipHorizontal: true });
-              console.log(video.videoHeight,video.videoHeight);
-              setPoses([pose]);
-           
+              // Corrected to log videoWidth
+              setPosesFunc([pose]);
+              console.log(poses)
             }
           }
-
-          requestAnimationFrame(handlePredictions); // Schedule next frame prediction
+        
+          // Continue the animation frame loop
+          requestAnimationFrame(() => handlePredictions(videoRef, setPosesFunc));
         };
 
-        handlePredictions();
+        handlePredictions(webcamRef, setPoses); // Start prediction loop for webcam
+        handlePredictions(sampleVideoRef, setSamplePoses); // Start prediction loop for sample video
       } catch (error) {
         console.error('Error loading PoseNet model:', error);
       }
     };
 
     loadPosenet();
+    
   }, []);
 
   const renderPoses = () => {
@@ -74,12 +107,26 @@ const PoseNet = () => {
   };
 
   return (
+    <>
     <div className="PoseNet" style={{ paddingLeft:100, display: 'grid', gridTemplateColumns: 'auto auto', fontFamily: 'Noto Serif', fontSize: 20 }}>
+
+      <Webcam
+        audio={false}
+        ref={webcamRef}
+        style={{ width: 640, height: 480, border:'5px solid black' }}
+      />
+
+<img
+        ref={sampleVideoRef}
+        style={{ width: 640, height: 480, border:'5px solid black' }}
+        src={benchPress} // Specify the path to your sample video here
+      />
+
     <div>
       {poses.map((pose, index) => (
       <p>
-     <span style={{ fontWeight:'bold' }}>Overall Confidence Score:</span> {pose.score} <br></br><br></br>
-     <span style={{ fontWeight:'bold' }}>{pose.keypoints[0].part}:</span> {pose.keypoints[0].score} <br></br>
+     <span style={{ fontWeight:'bold' }}>Overall Confidence Score:</span> {pose.score}
+     {/* <span style={{ fontWeight:'bold' }}>{pose.keypoints[0].part}:</span> {pose.keypoints[0].score} <br></br>
      <span style={{ fontWeight:'bold' }}>{pose.keypoints[1].part}:</span> {pose.keypoints[1].score} <br></br>
      <span style={{ fontWeight:'bold' }}>{pose.keypoints[2].part}:</span> {pose.keypoints[2].score} <br></br>
      <span style={{ fontWeight:'bold' }}>{pose.keypoints[3].part}:</span> {pose.keypoints[3].score} <br></br>
@@ -95,20 +142,27 @@ const PoseNet = () => {
      <span style={{ fontWeight:'bold' }}>{pose.keypoints[13].part}:</span> {pose.keypoints[13].score} <br></br>
      <span style={{ fontWeight:'bold' }}>{pose.keypoints[14].part}:</span> {pose.keypoints[14].score} <br></br>
      <span style={{ fontWeight:'bold' }}>{pose.keypoints[15].part}:</span> {pose.keypoints[15].score} <br></br>
-     <span style={{ fontWeight:'bold' }}>{pose.keypoints[16].part}:</span> {pose.keypoints[16].score} <br></br>
+     <span style={{ fontWeight:'bold' }}>{pose.keypoints[16].part}:</span> {pose.keypoints[16].score} <br></br> */}
 
       </p>   
     
   ))}
   </div>
 
-      <Webcam
-        audio={false}
-        ref={webcamRef}
-        style={{ width: 640, height: 480 }}
-      />
+
+
+  <div>
+      
+      <p>
+     <span style={{ fontWeight:'bold' }}>Required Confidence Score:</span> 0.85 to 1.0
+
+      </p>   
+  </div>
   
     </div>
+    <p style={{ fontWeight:'bold',fontFamily: 'Noto Serif', fontSize: 50,textAlign:'center' }}>Workout Accuracy{poses.map((pose, index) => (<p>{(pose.score/0.0095).toFixed(2)} %</p>))}</p>
+    
+    </>
   );
 };
 

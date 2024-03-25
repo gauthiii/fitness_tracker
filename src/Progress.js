@@ -221,7 +221,7 @@ function Progress() {
     //new changes
 
     if(selectedWorkouts.length==0){
-      setError("Your schedule couldn't get updated. Please try again!");
+      setError("Click the button below to save your schedule");
       setIsDialogOpen(true);
     }
 
@@ -290,7 +290,7 @@ const handleCloseDialog = () => {
 
   return (
     <div className="prb">
-      <Nav handleLogout={handleLogout} page="progress" />
+      <Nav handleLogout={handleLogout} page="goal" />
       {loading ? ( 
          <>
          {/* Display the loading spinner while loading is true */ }
