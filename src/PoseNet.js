@@ -108,17 +108,27 @@ const PoseNet = () => {
 
   return (
     <>
-    <div className="PoseNet" style={{ paddingLeft:100, display: 'grid', gridTemplateColumns: 'auto auto', fontFamily: 'Noto Serif', fontSize: 20 }}>
+      {1==2 ? ( 
+         <>
+         {/* Display the loading spinner while loading is true */ }
+         <br></br><br></br> <br></br><br></br>
+        <div className="loading-spinner-container">
+          <div className="loading-spinner"></div>
+        </div>
+        </>
+      ) :(
+        <>
+    <div className="PoseNet" style={{ paddingLeft:100, display: 'grid', gridTemplateColumns: 'auto auto', fontFamily: 'Noto Serif', fontSize: 20, marginTop:"0px" }}>
 
       <Webcam
         audio={false}
         ref={webcamRef}
-        style={{ width: 640, height: 480, border:'5px solid black' }}
+        style={{ width: 500, height: 375, border:'5px solid black' }}
       />
 
 <img
         ref={sampleVideoRef}
-        style={{ width: 640, height: 480, border:'5px solid black' }}
+        style={{ width: 500, height: 375, border:'5px solid black' }}
         src={benchPress} // Specify the path to your sample video here
       />
 
@@ -160,8 +170,9 @@ const PoseNet = () => {
   </div>
   
     </div>
-    <p style={{ fontWeight:'bold',fontFamily: 'Noto Serif', fontSize: 50,textAlign:'center' }}>Workout Accuracy{poses.map((pose, index) => (<p>{(pose.score/0.0095).toFixed(2)} %</p>))}</p>
-    
+    {poses.map((pose, index) => (<p style={{ marginTop:"0px",fontWeight:'bold',fontFamily: 'DM Serif Display', fontSize: 40,textAlign:'center' }}>{"Workout Accuracy: "+(pose.score/0.0095).toFixed(2)} %</p>))}
+    </>  
+    )}
     </>
   );
 };

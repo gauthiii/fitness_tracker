@@ -36,6 +36,13 @@ import legExtenstion from './legExtenstion.gif';
 import legCurl from './legCurl.gif';
 import squat from './squat.gif';
 import legPress from './legPress.gif';
+import hammerCurl from './hammerCurl.gif';
+import cableCurl from './cableCurl.gif';
+import barbellCurl from './barbellCurl.gif';
+import tricepDips from './tricepDips.gif';
+import barPushdown from './barPushdown.gif';
+import tricepExtension from './tricepExtension.gif';
+
 
 
 function Progress() {
@@ -91,7 +98,18 @@ function Progress() {
     { image: legCurl, name: 'Leg Curl'},
     { image: squat, name: 'Squat'},
     { image: legPress, name: 'Leg Press'}
-  ]; 
+  ];
+  
+  const armWorkouts =[
+
+    { image: hammerCurl, name: 'Hammer Curl'},
+    { image: cableCurl, name: 'Cable Curl'},
+    { image: barbellCurl, name: 'Barbell Curl'},
+    { image: tricepDips, name: 'Tricep Dip'},
+    { image: barPushdown, name: 'Bar Pushdown'},
+    { image: tricepExtension, name: 'Tricep Extenstion'}
+
+  ]
     
 
 
@@ -212,10 +230,11 @@ function Progress() {
     const shoulder = getRandomItems(shoulderWorkouts, 3);
     const lat = getRandomItems(latWorkouts, 3);
     const leg = getRandomItems(legWorkouts, 3);
+    const arm = getRandomItems(armWorkouts, 3);
     
 
-    const selected = [...chest, ...shoulder, ...lat, ...leg];
-    setSelectedWorkouts([...chest, ...shoulder, ...lat, ...leg]);
+    const selected = [...chest, ...shoulder, ...lat, ...leg, ...arm];
+    setSelectedWorkouts([...chest, ...shoulder, ...lat, ...leg, ...arm]);
 
     console.log(selectedWorkouts);
     //new changes
@@ -384,6 +403,17 @@ const handleCloseDialog = () => {
   ))}
 </div>
 
+<div className="workTitle">Arm Workouts</div>
+  <div class="grid-container">
+  {armWorkouts.map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+    </div>
+  ))}
+</div>
+
 <div className="prbutton-container">
         <button type="button" className='prBut' onClick={generateWorkoutSchedule}>Generate a schedule for me</button>
         </div>
@@ -446,7 +476,7 @@ const handleCloseDialog = () => {
 
 <div className="workTitle">FRIDAY</div>
    <div class="grid-container">
-   {selectedWorkouts.slice(0, 3).map((workout, index) => (
+   {selectedWorkouts.slice(12, 15).map((workout, index) => (
     <div className="grid-item" key={index}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
