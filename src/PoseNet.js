@@ -154,7 +154,7 @@ const PoseNet = () => {
   <div>
       
       <p>
-     <span style={{ fontWeight:'bold' }}>Required Confidence Score:</span> 0.85 to 1.0
+     <span style={{ fontWeight:'bold' }}>Required Confidence Score:</span> {Math.random() * (1 - 0.85) + 0.85}
 
       </p>   
   </div>
