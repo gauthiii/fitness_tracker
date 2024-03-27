@@ -23,7 +23,7 @@ function Nav({handleLogout,page }){
             placeholder="What do you want to Search?"
           /> */}
           <div className="titleText">
-          SquatSync: An AI based fitness tracking website
+          Personal Artificial Intelligence Fitness Companion
           </div>
         </div>
         <ul>
