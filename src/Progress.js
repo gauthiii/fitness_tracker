@@ -42,7 +42,18 @@ import barbellCurl from './barbellCurl.gif';
 import tricepDips from './tricepDips.gif';
 import barPushdown from './barPushdown.gif';
 import tricepExtension from './tricepExtension.gif';
-
+import russianTwist from './russianTwist.gif';
+import reverseCrunch from './reverseCrunch.gif';
+import mountainClimber from './mountainClimber.gif';
+import deadbug from './deadbug.gif';
+import bicycleCrunch from './bicycleCrunch.gif';
+import swissBallCrunch from './swissBallCrunch.gif';
+import treadmill from './treadmill.gif';
+import cycling from './cycling.gif';
+import rowing from './rowing.gif';
+import skipping from './skipping.gif';
+import elliptical from './elliptical.gif';
+import jumpingJack from './jumpingJack.gif';
 
 
 function Progress() {
@@ -108,6 +119,28 @@ function Progress() {
     { image: tricepDips, name: 'Tricep Dip'},
     { image: barPushdown, name: 'Bar Pushdown'},
     { image: tricepExtension, name: 'Tricep Extenstion'}
+
+  ]
+    
+  const absWorkouts =[
+
+    { image: russianTwist, name: 'Russian Twist'},
+    { image: reverseCrunch, name: 'Reverse Crunch'},
+    { image: mountainClimber, name: 'Mountain Climber'},
+    { image: deadbug, name: 'Deadbug'},
+    { image: bicycleCrunch, name: 'Bicycle Crunch'},
+    { image: swissBallCrunch, name: 'Swiss Ball Crunch'}
+
+  ]
+
+  const cardioWorkouts =[
+
+    { image: treadmill, name: 'Treadmill'},
+    { image: cycling, name: 'Cycling'},
+    { image: rowing, name: 'Rowing'},
+    { image: skipping, name: 'Skipping'},
+    { image: elliptical, name: 'Elliptical'},
+    { image: jumpingJack, name: 'Jumping Jack'}
 
   ]
     
@@ -222,6 +255,12 @@ function Progress() {
     }
   };
 
+  const cancel = () =>{
+
+    setSelectedWorkouts([]);
+
+  }
+
 
   const generateWorkoutSchedule = async () => {
     setLoading(true);
@@ -231,10 +270,18 @@ function Progress() {
     const lat = getRandomItems(latWorkouts, 3);
     const leg = getRandomItems(legWorkouts, 3);
     const arm = getRandomItems(armWorkouts, 3);
+    const abs = getRandomItems(absWorkouts, 3);
+
+    chest.push(cardioWorkouts[0])
+    shoulder.push(cardioWorkouts[1])
+    lat.push(cardioWorkouts[2])
+    leg.push(cardioWorkouts[3])
+    arm.push(cardioWorkouts[4])
+    abs.push(cardioWorkouts[5])
     
 
-    const selected = [...chest, ...shoulder, ...lat, ...leg, ...arm];
-    setSelectedWorkouts([...chest, ...shoulder, ...lat, ...leg, ...arm]);
+    const selected = [...chest, ...shoulder, ...lat, ...leg, ...arm, ...abs];
+    setSelectedWorkouts([...chest, ...shoulder, ...lat, ...leg, ...arm, ...abs]);
 
     console.log(selectedWorkouts);
     //new changes
@@ -414,6 +461,28 @@ const handleCloseDialog = () => {
   ))}
 </div>
 
+<div className="workTitle">Abs Workouts</div>
+  <div class="grid-container">
+  {absWorkouts.map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+    </div>
+  ))}
+</div>
+
+<div className="workTitle">Cardio Workouts</div>
+  <div class="grid-container">
+  {cardioWorkouts.map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
+    </div>
+  ))}
+</div>
+
 <div className="prbutton-container">
         <button type="button" className='prBut' onClick={generateWorkoutSchedule}>Generate a schedule for me</button>
         </div>
@@ -432,7 +501,7 @@ const handleCloseDialog = () => {
 
   <div className="workTitle">MONDAY</div>
    <div class="grid-container">
-   {selectedWorkouts.slice(0, 3).map((workout, index) => (
+   {selectedWorkouts.slice(0, 4).map((workout, index) => (
     <div className="grid-item" key={index}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
@@ -443,7 +512,7 @@ const handleCloseDialog = () => {
 
 <div className="workTitle">TUESDAY</div>
    <div class="grid-container">
-   {selectedWorkouts.slice(3, 6).map((workout, index) => (
+   {selectedWorkouts.slice(4, 8).map((workout, index) => (
     <div className="grid-item" key={index}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
@@ -454,7 +523,7 @@ const handleCloseDialog = () => {
 
 <div className="workTitle">WEDNESDAY</div>
    <div class="grid-container">
-   {selectedWorkouts.slice(6, 9).map((workout, index) => (
+   {selectedWorkouts.slice(8, 12).map((workout, index) => (
     <div className="grid-item" key={index}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
@@ -465,7 +534,7 @@ const handleCloseDialog = () => {
 
 <div className="workTitle">THURSDAY</div>
    <div class="grid-container">
-   {selectedWorkouts.slice(9, 12).map((workout, index) => (
+   {selectedWorkouts.slice(12, 16).map((workout, index) => (
     <div className="grid-item" key={index}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
@@ -476,7 +545,18 @@ const handleCloseDialog = () => {
 
 <div className="workTitle">FRIDAY</div>
    <div class="grid-container">
-   {selectedWorkouts.slice(12, 15).map((workout, index) => (
+   {selectedWorkouts.slice(16, 20).map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(selectedGoal === "Lose Weight") ? "4 x 30" : (selectedGoal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
+    </div>
+  ))}
+</div>
+
+<div className="workTitle">SATURDAY</div>
+   <div class="grid-container">
+   {selectedWorkouts.slice(20, 24).map((workout, index) => (
     <div className="grid-item" key={index}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
@@ -487,6 +567,10 @@ const handleCloseDialog = () => {
 
 <div className="prbutton-container">
         <button type="button" className='prBut' onClick={generateWorkoutSchedule}>Save Schedule</button>
+        </div>
+
+      <div className="prbutton-container">
+        <button type="button" className='prBut' onClick={cancel}>Change Schedule / Go back</button>
         </div>
 
 

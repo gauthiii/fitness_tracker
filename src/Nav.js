@@ -17,11 +17,14 @@ function Nav({handleLogout,page }){
           <li><Link to="/prediction" className={page!=="prediction"?"naLI":"naLI1"}>Prediction</Link></li>
         </ul>
         <div className="dashboard-search-container">
-          <input
+          {/* <input
             type="text"
             className="dashboard-search-bar"
             placeholder="What do you want to Search?"
-          />
+          /> */}
+          <div className="titleText">
+          SquatSync: An AI based fitness tracking website
+          </div>
         </div>
         <ul>
           

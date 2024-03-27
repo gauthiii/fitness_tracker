@@ -103,6 +103,14 @@
   padding: 0;
 }
 
+.titleText{
+  font-family: "Shadows Into Light", cursive;
+  font-size: 6vh;
+  font-weight: bold;
+  color: rgb(255, 34, 34);
+  
+}
+
 .stat-text {
   display: flex;
   justify-content: space-between; /* To distribute items evenly */

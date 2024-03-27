@@ -167,7 +167,7 @@ const handleCloseDialog = () => {
  
   <div className="workTitle">MONDAY</div>
    <div class="grid-container">
-   {userProfile.schedule.slice(0, 3).map((workout, index) => (
+   {userProfile.schedule.slice(0, 4).map((workout, index) => (
     <div className="grid-item" key={index}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
@@ -178,7 +178,7 @@ const handleCloseDialog = () => {
 
 <div className="workTitle">TUESDAY</div>
    <div class="grid-container">
-   {userProfile.schedule.slice(3, 6).map((workout, index) => (
+   {userProfile.schedule.slice(4, 8).map((workout, index) => (
     <div className="grid-item" key={index}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
@@ -189,7 +189,7 @@ const handleCloseDialog = () => {
 
 <div className="workTitle">WEDNESDAY</div>
    <div class="grid-container">
-   {userProfile.schedule.slice(6, 9).map((workout, index) => (
+   {userProfile.schedule.slice(8, 12).map((workout, index) => (
     <div className="grid-item" key={index}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
@@ -200,7 +200,7 @@ const handleCloseDialog = () => {
 
 <div className="workTitle">THURSDAY</div>
    <div class="grid-container">
-   {userProfile.schedule.slice(9, 12).map((workout, index) => (
+   {userProfile.schedule.slice(12, 16).map((workout, index) => (
     <div className="grid-item" key={index}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
@@ -211,7 +211,18 @@ const handleCloseDialog = () => {
 
 <div className="workTitle">FRIDAY</div>
    <div class="grid-container">
-   {userProfile.schedule.slice(12, 15).map((workout, index) => (
+   {userProfile.schedule.slice(16, 20).map((workout, index) => (
+    <div className="grid-item" key={index}>
+      <img src={workout.image} alt="Animation" className="workout-image" />
+      <br />{workout.name}
+      <br /><span className='rep'>{(userProfile.goal === "Lose Weight") ? "4 x 30" : (userProfile.goal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
+    </div>
+  ))}
+</div>
+
+<div className="workTitle">SATURDAY</div>
+   <div class="grid-container">
+   {userProfile.schedule.slice(20, 24).map((workout, index) => (
     <div className="grid-item" key={index}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
