@@ -270,9 +270,7 @@ function Progress() {
 
   }
 
-
-  const generateWorkoutSchedule = async () => {
-    setLoading(true);
+  const rand = () =>{
 
     const chest = getRandomItems(chestWorkouts, 3);
     const shoulder = getRandomItems(shoulderWorkouts, 3);
@@ -295,12 +293,20 @@ function Progress() {
     console.log(selectedWorkouts);
     //new changes
 
-    if(selectedWorkouts.length==0){
+ 
       setError("Click the button below to save your schedule");
       setIsDialogOpen(true);
-    }
+    
 
-    else {
+  } 
+
+
+  const generateWorkoutSchedule = async () => {
+    setLoading(true);
+
+    
+
+   
 
     const db = getFirestore(firebase);
     const userDocRef = doc(db, 'ft_users', userProfile.email);
@@ -339,7 +345,7 @@ function Progress() {
       setIsDialogOpen(true);
     
     }
-  }
+  
     
     setLoading(false);
   };
@@ -493,7 +499,7 @@ const handleCloseDialog = () => {
 </div>
 
 <div className="prbutton-container">
-        <button type="button" className='prBut' onClick={generateWorkoutSchedule}>Generate a schedule for me</button>
+        <button type="button" className='prBut' onClick={rand}>Generate a schedule for me</button>
         </div>
 
     

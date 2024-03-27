@@ -10,6 +10,8 @@ import Nav from './Nav.js';
 import './Dashboard.css';
 import './LoadingSpinner.css';
 
+import { useLocation } from 'react-router-dom';
+
 
 
 
@@ -26,7 +28,10 @@ function Dashboard() {
 
   const [userProfile, setUser] = useState(null);
 
-  const [loading, setLoading] = useState(true);  
+  const [loading, setLoading] = useState(true);
+  
+  const location = useLocation();
+  const workout = location.state ? location.state.workout : null;
 
 
 
@@ -178,7 +183,7 @@ function Dashboard() {
       <br></br> <br></br><br></br>
    
 
-    <PoseNet workout={userProfile.schedule[0]} />
+    {workout ?<PoseNet workout={ workout} />:<PoseNet workout={ userProfile.schedule[4]} />}
 
    
     
