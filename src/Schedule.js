@@ -14,6 +14,8 @@ import CustomDialog from './CustomDialog.js';
 
 
 
+import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -30,7 +32,12 @@ function Progress() {
 
 
 
+  const navigate = useNavigate();
 
+  // Function to handle image click, passing the workout data
+  const handleImageClick = (workout) => {
+    navigate('/prediction', { state: { workout } });
+  };
 
 
  
@@ -168,7 +175,7 @@ const handleCloseDialog = () => {
   <div className="workTitle">MONDAY</div>
    <div class="grid-container">
    {userProfile.schedule.slice(0, 4).map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(userProfile.goal === "Lose Weight") ? "4 x 30" : (userProfile.goal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
@@ -179,7 +186,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">TUESDAY</div>
    <div class="grid-container">
    {userProfile.schedule.slice(4, 8).map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(userProfile.goal === "Lose Weight") ? "4 x 30" : (userProfile.goal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
@@ -190,7 +197,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">WEDNESDAY</div>
    <div class="grid-container">
    {userProfile.schedule.slice(8, 12).map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(userProfile.goal === "Lose Weight") ? "4 x 30" : (userProfile.goal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
@@ -201,7 +208,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">THURSDAY</div>
    <div class="grid-container">
    {userProfile.schedule.slice(12, 16).map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(userProfile.goal === "Lose Weight") ? "4 x 30" : (userProfile.goal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
@@ -212,7 +219,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">FRIDAY</div>
    <div class="grid-container">
    {userProfile.schedule.slice(16, 20).map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(userProfile.goal === "Lose Weight") ? "4 x 30" : (userProfile.goal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
@@ -223,7 +230,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">SATURDAY</div>
    <div class="grid-container">
    {userProfile.schedule.slice(20, 24).map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(userProfile.goal === "Lose Weight") ? "4 x 30" : (userProfile.goal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>

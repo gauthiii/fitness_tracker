@@ -3,6 +3,7 @@ import * as tf from '@tensorflow/tfjs';
 import * as posenet from '@tensorflow-models/posenet';
 import Webcam from 'react-webcam';
 
+
 import benchPress from './benchPress.gif';
 import machineFly from './machineFly.gif';
 import chestDip from './chestDip.gif';
@@ -30,14 +31,17 @@ import legPress from './legPress.gif';
 import running from './running.mp4'
 
 
-const PoseNet = () => {
+const PoseNet = ({workout}) => {
   const webcamRef = useRef(null);
   const sampleVideoRef = useRef(null);
   const canvasRef = useRef(null);
   const [poses, setPoses] = useState([]);
   const [samplePoses, setSamplePoses] = useState([]);
+  const [isWebcamActive, setIsWebcamActive] = useState(true); // New state variable for managing webcam status
 
   useEffect(() => {
+    if (!isWebcamActive) return; // Do not load PoseNet or start predictions if webcam is not active
+
     const loadPosenet = async () => {
       try {
         const net = await posenet.load({
@@ -48,33 +52,36 @@ const PoseNet = () => {
         console.log('Posenet model loaded');
 
         const handlePredictions = async (videoRef, setPosesFunc) => {
+          if (!isWebcamActive) return; // Exit if the webcam has been deactivated
           // Check if the videoRef and the video element are defined
           if (videoRef.current && videoRef.current.video && videoRef.current.video.readyState === 4) {
             const video = videoRef.current.video;
         
-            // Ensure video dimensions are valid before processing
             if (video.videoWidth > 0 && video.videoHeight > 0) {
               const pose = await net.estimateSinglePose(video, { flipHorizontal: true });
-              // Corrected to log videoWidth
               setPosesFunc([pose]);
-              console.log(poses)
             }
           }
         
-          // Continue the animation frame loop
           requestAnimationFrame(() => handlePredictions(videoRef, setPosesFunc));
         };
 
-        handlePredictions(webcamRef, setPoses); // Start prediction loop for webcam
-        handlePredictions(sampleVideoRef, setSamplePoses); // Start prediction loop for sample video
+        handlePredictions(webcamRef, setPoses);
+        handlePredictions(sampleVideoRef, setSamplePoses);
       } catch (error) {
         console.error('Error loading PoseNet model:', error);
       }
     };
 
     loadPosenet();
-    
-  }, []);
+  }, [isWebcamActive]); // Add isWebcamActive as a dependency
+
+
+    // Function to toggle the webcam
+    const toggleWebcam = () => {
+      setIsWebcamActive(!isWebcamActive);
+    };
+  
 
   const renderPoses = () => {
     if (canvasRef.current && poses.length > 0) {
@@ -118,6 +125,10 @@ const PoseNet = () => {
         </>
       ) :(
         <>
+        {/* <div style={{textAlign:'center'}}>
+         <button onClick={toggleWebcam} style={{textAlign:'center',backgroundColor:'black', width:'20vw', borderRadius:'10px'}}>{isWebcamActive ? 'Stop Webcam' : 'Start Webcam'}</button>
+         </div> */}
+         {isWebcamActive && (<>
     <div className="PoseNet" style={{ paddingLeft:100, display: 'grid', gridTemplateColumns: 'auto auto', fontFamily: 'Noto Serif', fontSize: 20, marginTop:"0px" }}>
 
       <Webcam
@@ -129,7 +140,7 @@ const PoseNet = () => {
 <img
         ref={sampleVideoRef}
         style={{ width: 500, height: 375, border:'5px solid black' }}
-        src={benchPress} // Specify the path to your sample video here
+        src={workout.image} // Specify the path to your sample video here
       />
 
     <div>
@@ -171,6 +182,7 @@ const PoseNet = () => {
   
     </div>
     {poses.map((pose, index) => (<p style={{ marginTop:"0px",fontWeight:'bold',fontFamily: 'DM Serif Display', fontSize: 40,textAlign:'center' }}>{"Workout Accuracy: "+(pose.score/0.0095).toFixed(2)} %</p>))}
+    </>)}
     </>  
     )}
     </>

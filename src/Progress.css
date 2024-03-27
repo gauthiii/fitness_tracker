@@ -48,6 +48,7 @@
     font-family: 'Noto Serif', sans-serif;
     font-weight: bold;
     text-align: center;
+    
   }
 
   .rep{
@@ -60,6 +61,7 @@
   width: 10vw;
   padding: 10px;
   border: 5px solid black;
+  cursor: pointer;
 } 
 
 .workout-image:hover{

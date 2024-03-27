@@ -178,7 +178,7 @@ function Dashboard() {
       <br></br> <br></br><br></br>
    
 
-    <PoseNet />
+    <PoseNet workout={userProfile.schedule[0]} />
 
    
     

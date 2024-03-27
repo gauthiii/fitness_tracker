@@ -55,6 +55,8 @@ import skipping from './skipping.gif';
 import elliptical from './elliptical.gif';
 import jumpingJack from './jumpingJack.gif';
 
+import { useNavigate } from 'react-router-dom';
+
 
 function Progress() {
   const [userProfile, setUser] = useState(null);
@@ -143,6 +145,13 @@ function Progress() {
     { image: jumpingJack, name: 'Jumping Jack'}
 
   ]
+
+  const navigate = useNavigate();
+
+  // Function to handle image click, passing the workout data
+  const handleImageClick = (workout) => {
+    navigate('/prediction', { state: { workout } });
+  };
     
 
 
@@ -407,7 +416,7 @@ const handleCloseDialog = () => {
   <div className="workTitle">Chest Workouts</div>
   <div class="grid-container">
   {chestWorkouts.map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
@@ -419,7 +428,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">Shoulder Workouts</div>
   <div class="grid-container">
   {shoulderWorkouts.map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
@@ -430,7 +439,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">Lat Workouts</div>
   <div class="grid-container">
   {latWorkouts.map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
@@ -442,7 +451,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">Leg Workouts</div>
   <div class="grid-container">
   {legWorkouts.map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
@@ -453,7 +462,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">Arm Workouts</div>
   <div class="grid-container">
   {armWorkouts.map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
@@ -464,7 +473,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">Abs Workouts</div>
   <div class="grid-container">
   {absWorkouts.map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
@@ -475,7 +484,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">Cardio Workouts</div>
   <div class="grid-container">
   {cardioWorkouts.map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal==="Lose Weight")?"4 x 30":(selectedGoal==="Gain Weight")?"3 x 20":"4 x 20"} Reps</span>
@@ -502,7 +511,7 @@ const handleCloseDialog = () => {
   <div className="workTitle">MONDAY</div>
    <div class="grid-container">
    {selectedWorkouts.slice(0, 4).map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal === "Lose Weight") ? "4 x 30" : (selectedGoal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
@@ -513,7 +522,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">TUESDAY</div>
    <div class="grid-container">
    {selectedWorkouts.slice(4, 8).map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal === "Lose Weight") ? "4 x 30" : (selectedGoal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
@@ -524,7 +533,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">WEDNESDAY</div>
    <div class="grid-container">
    {selectedWorkouts.slice(8, 12).map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal === "Lose Weight") ? "4 x 30" : (selectedGoal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
@@ -535,7 +544,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">THURSDAY</div>
    <div class="grid-container">
    {selectedWorkouts.slice(12, 16).map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal === "Lose Weight") ? "4 x 30" : (selectedGoal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
@@ -546,7 +555,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">FRIDAY</div>
    <div class="grid-container">
    {selectedWorkouts.slice(16, 20).map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal === "Lose Weight") ? "4 x 30" : (selectedGoal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
@@ -557,7 +566,7 @@ const handleCloseDialog = () => {
 <div className="workTitle">SATURDAY</div>
    <div class="grid-container">
    {selectedWorkouts.slice(20, 24).map((workout, index) => (
-    <div className="grid-item" key={index}>
+    <div className="grid-item" key={index} onClick={() => handleImageClick(workout)}>
       <img src={workout.image} alt="Animation" className="workout-image" />
       <br />{workout.name}
       <br /><span className='rep'>{(selectedGoal === "Lose Weight") ? "4 x 30" : (selectedGoal === "Gain Weight") ? "3 x 20" : "4 x 20"} Reps</span>
@@ -570,7 +579,7 @@ const handleCloseDialog = () => {
         </div>
 
       <div className="prbutton-container">
-        <button type="button" className='prBut' onClick={cancel}>Change Schedule / Go back</button>
+        <button type="button" className='prBut' onClick={cancel}>Change Schedule (go back)</button>
         </div>
 
 
