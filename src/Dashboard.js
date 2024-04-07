@@ -36,6 +36,9 @@ function Dashboard() {
   const [bmi, calcBmi] = useState('');
 
   const [ideal,calcIdeal] = useState('');
+  const[maint,calcMaint] = useState('')
+  const[def,calcDef] = useState('')
+  const[prot,calcProt] = useState('')
 
   const [options, setOptions] = useState(null);
   
@@ -215,7 +218,10 @@ function Dashboard() {
         if (userData.goal==='Lose Weight')
        { 
         
-     
+        calcMaint(`${(wt*2.2*12).toFixed(0)}`)
+        calcDef(`${(wt*2.2*12 - 300).toFixed(0)}`)
+        calcProt(`${(wt*0.8).toFixed(2)}`)
+        
 
       
 
@@ -255,7 +261,7 @@ function Dashboard() {
             fontColor: "black", // Change the legend title font color to black
           },
           
-          backgroundColor: "brown", // Set the background color here
+          backgroundColor: "transparent", // Set the background color here
           width: 1000, // Set the width of the chart in pixels
           height: 600, // Set the height of the chart in pixels
           data: [
@@ -271,8 +277,12 @@ function Dashboard() {
             },
           },
         });}
-        else
+        else if (userData.goal==='Gain Weight')
        { 
+
+        calcMaint(`${(wt*2.2*12).toFixed(0)}`)
+        calcDef(`${(wt*2.2*12 + 600).toFixed(0)}`)
+        calcProt(`${(wt*0.8).toFixed(2)}`)
 
         let dp = userData.week.map((value, index) => ({
           label: `Week ${index + 1}`, y: parseFloat(value)
@@ -308,7 +318,64 @@ function Dashboard() {
             fontColor: "black", // Change the legend title font color to black
           },
           
-          backgroundColor: "brown", // Set the background color here
+          backgroundColor: "transparent", // Set the background color here
+          width: 1000, // Set the width of the chart in pixels
+          height: 600, // Set the height of the chart in pixels
+          data: [
+            {
+              type: "spline",
+              color: "black",
+              dataPoints: dp,
+            },
+          ],
+          plotOptions: {
+            line: {
+              borderColor: "black", // Set the border color to black
+            },
+          },
+        });}
+        else
+       { 
+
+        calcMaint(`${(wt*2.2*12).toFixed(0)}`)
+        calcDef(`${(wt*2.2*12 + 600).toFixed(0)}`)
+        calcProt(`${(wt*0.8).toFixed(2)}`)
+
+        let dp = userData.week.map((value, index) => ({
+          label: `Week ${index + 1}`, y: parseFloat(value)
+        }));
+        
+        setOptions({
+          animationEnabled: true,
+          
+          title: {
+            text: "Projected Muscle Gain Over 20 Weeks",
+            fontColor: "black",
+            horizontalAlign: "center", // Center-align the title
+          margin: 20, // Add padding under the title
+          },
+          axisY: {
+            title: "Weight (kg)",
+            titleFontColor: "black",
+            lineColor: "black",
+            tickColor: "black", // Set the X-axis tick color to black
+          tickLength: 10, // Set the length of ticks on the X-axis
+          gridColor: "black", // Set the grid lines color to black
+          },
+          axisX: {
+            title: "Weeks",
+            titleFontColor: "black",
+            lineColor: "black",
+            tickColor: "black", // Set the X-axis tick color to black
+          tickLength: 10, // Set the length of ticks on the X-axis
+          gridColor: "black", // Set the grid lines color to black
+            
+          },
+          legend: {
+            fontColor: "black", // Change the legend title font color to black
+          },
+          
+          backgroundColor: "transparent", // Set the background color here
           width: 1000, // Set the width of the chart in pixels
           height: 600, // Set the height of the chart in pixels
           data: [
@@ -437,20 +504,22 @@ function Dashboard() {
 
     
       {/* Main Content */}
-      <div className="main-content">
+      {/* <div className="main-content"> */}
         {/* Add your widgets and content here */}
        {/* <img src={loginImage} alt="Login" className="login-image" />*/}
-        <img src={animationGif} alt="Animation" className="login-image"   />
-
+        {/* <img src={animationGif} alt="Animation" className="login-image"   /> */}
+{/* 
         <img src={animationGif2} alt="Animation" className="login-image"   />
 
         <img src={animationGif3} alt="Animation" className="login-image"   />
 
         <img src={animationGif4} alt="Animation" className="login-image"   />
 
-        <img src={animationGif5} alt="Animation" className="login-image"  />
+        <img src={animationGif5} alt="Animation" className="login-image"  /> */}
         {/* Add your widgets and content below */}
-      </div>
+      {/* </div> */}
+
+      <div style={{height:'20px'}}></div>
 
       <div className="stat1">These are your body stats:</div>
     <div className="stat-text">
@@ -498,7 +567,13 @@ function Dashboard() {
   </table>
 
   
-    <div className="stat1">Ideal Weight : {ideal} Kgs</div>
+    <div className="stat1">Ideal Weight : {ideal} Kgs <br></br>
+
+    Maintenance Calories = {maint} <br></br>
+Calorie Deficient = {def} <br></br>
+Daily Protein intake = {prot} grams <br></br>
+    
+    </div>
 
     <div className="stat-text">
       <div className="stat-item">

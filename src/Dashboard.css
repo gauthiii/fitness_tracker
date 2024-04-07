@@ -1,9 +1,17 @@
 /* Dashboard.css */
  .db {
-  background-color: brown;
-  min-height: 150vh;
+  background-image: linear-gradient(rgba(115, 113, 113, 0.344), rgba(104, 104, 104, 0.5)), url('wallpaper.jpg');
+  background-size: contain; /* or specific dimensions like 1920px 1080px */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: rgb(21, 21, 21);
+  min-height: 100vh;
+  
+  
   
 }
+
+
 
 .chart-container {
   display: flex;
@@ -140,12 +148,12 @@
 }
 
 .bmi-table th {
-  background-color: #cf3737;
+ 
   color: black;
 }
 
 .bmi-table tbody tr:nth-child(even) {
-  background-color: #cf3737;
+  
 }
 
 
