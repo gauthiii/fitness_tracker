@@ -183,7 +183,7 @@ function Dashboard() {
       <br></br> <br></br><br></br>
    
 
-    {workout ?<PoseNet workout={ workout} />:<PoseNet workout={ userProfile.schedule[4]} />}
+    {userProfile.goal?( workout ?<PoseNet workout={ workout} />:<PoseNet workout={ userProfile.schedule[4]} />):(<><p style={{marginLeft:"50px"}} className="goalchoose">Go to Goal screen and save a schedule.</p></>)}
 
    
     

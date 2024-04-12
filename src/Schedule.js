@@ -159,10 +159,10 @@ const handleCloseDialog = () => {
       <div className="progress-container">
        
       {
-      userProfile.schedule && (  <div className="goal-buttons">
+      userProfile.schedule ? (  <div className="goal-buttons">
           <p className="goalchoose">{"Your workout schedule ("+ userProfile.goal+")"}</p>
          
-        </div>)}
+        </div>):(<p className="goalchoose">Go to Goal screen and save a schedule.</p>)}
     
 
 

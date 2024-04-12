@@ -214,6 +214,7 @@ function Dashboard() {
 
 
         calcBmi(`${bmi_val.toFixed(2)}`);
+        
        
         if (userData.goal==='Lose Weight')
        { 
@@ -473,7 +474,7 @@ function Dashboard() {
           <div className="loading-spinner"></div>
         </div>
         </>
-      ) :(
+      ) : options && userProfile.goal ?(
     <div className="dashboard">
       {/* Navbar */}
     { /*  <div className="navbar">
@@ -524,7 +525,7 @@ function Dashboard() {
       <div className="stat1">These are your body stats:</div>
     <div className="stat-text">
       <div className="stat-item">
-        <p>Age: {userProfile.age} years</p>
+        <p>Age: {userProfile.age && userProfile.age} years</p>
       </div>
       <div className="stat-item">
         <p>Weight: {userProfile.weight}</p>
@@ -582,7 +583,7 @@ Daily Protein intake = {prot} grams <br></br>
     </div>
 
     <div className="chart-container">
-    <CanvasJSChart options={options} />
+    {options && <CanvasJSChart options={options} />}
     </div>
     
     <div className="updateText">Update Weight Change</div><br></br>
@@ -601,7 +602,12 @@ Daily Protein intake = {prot} grams <br></br>
       
 
     </div>
-      )}
+      ):( <div className="dashboard">
+<Nav handleLogout={handleLogout} page="home" />
+<div style={{height:'20px'}}></div>
+
+<div className="stat1"><br></br>Update your profile and choose a goal.<br></br> Generate and save a schedule to view your dashboard.</div>
+      </div>)}
          {/* Custom dialog */}
          <CustomDialog
         isOpen={isDialogOpen}
