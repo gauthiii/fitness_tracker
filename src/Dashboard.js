@@ -338,8 +338,8 @@ function Dashboard() {
        { 
 
         calcMaint(`${(wt*2.2*12).toFixed(0)}`)
-        calcDef(`${(wt*2.2*12 + 600).toFixed(0)}`)
-        calcProt(`${(wt*0.8*2.20462).toFixed(2)}`)
+        calcDef(`${(wt*2.2*12 + 300).toFixed(0)}`)
+        calcProt(`${(wt*1.0*2.20462).toFixed(2)}`)
 
         let dp = userData.week.map((value, index) => ({
           label: `Week ${index + 1}`, y: parseFloat(value)

@@ -175,13 +175,13 @@ const PoseNet = ({workout}) => {
   <div>
       
       <p>
-     <span style={{ fontWeight:'bold' }}>Required Confidence Score:</span> {Math.random() * (1 - 0.85) + 0.85}
+     <span style={{ fontWeight:'bold' }}>Required Confidence Score:</span> {Math.random() * (1 - workout.score) + workout.score}
 
       </p>   
   </div>
   
     </div>
-    {poses.map((pose, index) => (<p style={{ marginTop:"0px",fontWeight:'bold',fontFamily: 'DM Serif Display', fontSize: 40,textAlign:'center' }}>{"Workout Accuracy: "+(pose.score/0.0095).toFixed(2)} %</p>))}
+    {poses.map((pose, index) => (<p style={{ marginTop:"0px",fontWeight:'bold',fontFamily: 'DM Serif Display', fontSize: 40,textAlign:'center' }}>{"Workout Accuracy: "+(pose.score/(((workout.score+0.05))/100)).toFixed(2)} %</p>))}
     </>)}
     </>  
     )}

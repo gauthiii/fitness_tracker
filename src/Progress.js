@@ -78,71 +78,71 @@ function Progress() {
   const [selectedWorkouts, setSelectedWorkouts] = useState([]);
 
   const chestWorkouts = [
-    { image: benchPress, name: 'Bench Press'},
-    { image: machineFly, name: 'Machine Fly'},
-    { image: chestDip, name: 'Chest Dip'},
-    { image: cableCrossover, name: 'Cable Cross Over'},
-    { image: diamondPushUp, name: 'Diamond Push Up'},
-    { image: chestSqueeze, name: 'Plate Squeeze Press'}
+    { score: 0.80, image: benchPress, name: 'Bench Press'},
+    { score: 0.49, image: machineFly, name: 'Machine Fly'},
+    { score: 0.76, image: chestDip, name: 'Chest Dip'},
+    { score: 0.90, image: cableCrossover, name: 'Cable Cross Over'},
+    { score: 0.85, image: diamondPushUp, name: 'Diamond Push Up'},
+    { score: 0.49, image: chestSqueeze, name: 'Plate Squeeze Press'}
   ];
 
   const shoulderWorkouts = [
-    { image: reverseFly, name: 'Reverse Fly'},
-    { image: pushPress, name: 'Push Press'},
-    { image: facePull, name: 'Face Pull'},
-    { image: seeSawPress, name: 'See Saw Press'},
-    { image: rearDeltFly, name: 'Rear Delt Fly'},
-    { image: barbellFrontRaise, name: 'Barbell Front Raise'}
+    { score: 0.69, image: reverseFly, name: 'Reverse Fly'},
+    { score: 0.72, image: pushPress, name: 'Push Press'},
+    { score: 0.65, image: facePull, name: 'Face Pull'},
+    { score: 0.52, image: seeSawPress, name: 'See Saw Press'},
+    { score: 0.49, image: rearDeltFly, name: 'Rear Delt Fly'},
+    { score: 0.52, image: barbellFrontRaise, name: 'Barbell Front Raise'}
   ];
   
   const latWorkouts = [
-    { image: deadLift, name: 'Deadlift'},
-    { image: pullUp, name: 'Pull Up'},
-    { image: cableRow, name: 'Cable Row'},
-    { image: tBarRow, name: 'T-Bar Row'},
-    { image: latPullDown, name: 'Lat Pull Down'},
-    { image: pendlayRow, name: 'Pendlay Row'}
+    { score: 0.85, image: deadLift, name: 'Deadlift'},
+    { score: 0.90, image: pullUp, name: 'Pull Up'},
+    { score: 0.76, image: cableRow, name: 'Cable Row'},
+    { score: 0.56, image: tBarRow, name: 'T-Bar Row'},
+    { score: 0.82, image: latPullDown, name: 'Lat Pull Down'},
+    { score: 0.85, image: pendlayRow, name: 'Pendlay Row'}
   ];
 
   const legWorkouts = [
-    { image: lunges, name: 'Lunges'},
-    { image: calfRaise, name: 'Calf Raise'},
-    { image: legExtenstion, name: 'Leg Extension'},
-    { image: legCurl, name: 'Leg Curl'},
-    { image: squat, name: 'Squat'},
-    { image: legPress, name: 'Leg Press'}
+    { score: 0.85, image: lunges, name: 'Lunges'},
+    { score: 0.85, image: calfRaise, name: 'Calf Raise'},
+    { score: 0.85, image: legExtenstion, name: 'Leg Extension'},
+    { score: 0.85, image: legCurl, name: 'Leg Curl'},
+    { score: 0.85, image: squat, name: 'Squat'},
+    { score: 0.85, image: legPress, name: 'Leg Press'}
   ];
   
   const armWorkouts =[
 
-    { image: hammerCurl, name: 'Hammer Curl'},
-    { image: cableCurl, name: 'Cable Curl'},
-    { image: barbellCurl, name: 'Barbell Curl'},
-    { image: tricepDips, name: 'Tricep Dip'},
-    { image: barPushdown, name: 'Bar Pushdown'},
-    { image: tricepExtension, name: 'Tricep Extenstion'}
+    { score: 0.85, image: hammerCurl, name: 'Hammer Curl'},
+    { score: 0.85, image: cableCurl, name: 'Cable Curl'},
+    { score: 0.85, image: barbellCurl, name: 'Barbell Curl'},
+    { score: 0.85, image: tricepDips, name: 'Tricep Dip'},
+    { score: 0.85, image: barPushdown, name: 'Bar Pushdown'},
+    { score: 0.85, image: tricepExtension, name: 'Tricep Extenstion'}
 
   ]
     
   const absWorkouts =[
 
-    { image: russianTwist, name: 'Russian Twist'},
-    { image: reverseCrunch, name: 'Reverse Crunch'},
-    { image: mountainClimber, name: 'Mountain Climber'},
-    { image: deadbug, name: 'Deadbug'},
-    { image: bicycleCrunch, name: 'Bicycle Crunch'},
-    { image: swissBallCrunch, name: 'Swiss Ball Crunch'}
+    { score: 0.85, image: russianTwist, name: 'Russian Twist'},
+    { score: 0.85, image: reverseCrunch, name: 'Reverse Crunch'},
+    { score: 0.85, image: mountainClimber, name: 'Mountain Climber'},
+    { score: 0.85, image: deadbug, name: 'Deadbug'},
+    { score: 0.85, image: bicycleCrunch, name: 'Bicycle Crunch'},
+    { score: 0.85, image: swissBallCrunch, name: 'Swiss Ball Crunch'}
 
   ]
 
   const cardioWorkouts =[
 
-    { image: treadmill, name: 'Treadmill'},
-    { image: cycling, name: 'Cycling'},
-    { image: rowing, name: 'Rowing'},
-    { image: skipping, name: 'Skipping'},
-    { image: elliptical, name: 'Elliptical'},
-    { image: jumpingJack, name: 'Jumping Jack'}
+    { score: 0.85, image: treadmill, name: 'Treadmill'},
+    { score: 0.85, image: cycling, name: 'Cycling'},
+    { score: 0.85, image: rowing, name: 'Rowing'},
+    { score: 0.85, image: skipping, name: 'Skipping'},
+    { score: 0.85, image: elliptical, name: 'Elliptical'},
+    { score: 0.85, image: jumpingJack, name: 'Jumping Jack'}
 
   ]
 
